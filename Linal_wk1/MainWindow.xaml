@@ -1,0 +1,70 @@
+﻿<Window x:Class="Linal_wk1.MainWindow"
+        WindowStartupLocation="CenterScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Linal_wk1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="950" Width="900">
+    <Grid Margin="0,0,0,-51">
+        <Canvas  Name="Assenstelsel" HorizontalAlignment="Center" VerticalAlignment="Center"
+          Width="800" Height="700" MouseLeftButtonDown="Assenstelsel_MouseLeftButtonDown" Margin="32,7,10,213">
+            <Canvas.LayoutTransform>
+                <ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
+            </Canvas.LayoutTransform>
+            <Canvas.Background>
+                <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" ViewportUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing>
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,50,50"/>
+                            </GeometryDrawing.Geometry>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="Gray" Thickness="1"/>
+                            </GeometryDrawing.Pen>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Canvas.Background>
+        </Canvas>
+        <Button x:Name="CreateVectors" Content="Create Vector" HorizontalAlignment="Left" Margin="148,890,0,0" VerticalAlignment="Top" Width="102" Click="CreateVectors_Click"/>
+        <Button x:Name="CreateMatrixes" Content="Create Matrix" HorizontalAlignment="Left" Margin="780,774,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.49,-0.15"/>
+        <Button x:Name="DeleteVectors" Content="Delete Vector" HorizontalAlignment="Left" Margin="550,863,0,0" VerticalAlignment="Top" Width="102" Click="DeleteVectors_Click" Height="23"/>
+        <Label x:Name="label" Content="Selected vector" HorizontalAlignment="Left" Margin="326,771,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelLength" Content="{Binding Path=SelectedVector.Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="425,831,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.192,0.609"/>
+        <Label x:Name="label_Copy"  HorizontalAlignment="Left" Content="Length" Margin="324,831,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelScale"  HorizontalAlignment="Left" Content="Scale" Margin="326,803,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textScale" HorizontalAlignment="Left" Height="23" Margin="425,806,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="scaleVector" Content="Scale Vector" HorizontalAlignment="Left" Margin="550,806,0,0" VerticalAlignment="Top" Width="102" Height="23" Click="scaleVector_Click"/>
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="19,774,611,52" >
+            <StackPanel Orientation="Vertical" Margin="0,0,-25,24">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="X1:" Width="50" HorizontalAlignment="Left"/>
+                    <TextBox Name="txtX1" Width="180" Text="{Binding Path=SelectedX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="X2:" Width="50" HorizontalAlignment="Left"/>
+                    <TextBox Name="txtX2" Width="180" Text="{Binding Path=SelectedX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Y1:" Width="50" HorizontalAlignment="Left"/>
+                    <TextBox Name="txtY1" Width="180" Text="{Binding Path=SelectedY1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Y2:" Width="50" HorizontalAlignment="Left"/>
+                    <TextBox Name="txtY2" Width="180" Text="{Binding Path=SelectedY2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </StackPanel>
+
+            </StackPanel>
+
+        </Border>
+        <Label x:Name="labelXLine" HorizontalAlignment="Left" Margin="96,743,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelXLine2" HorizontalAlignment="Left" Margin="540,743,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="0" HorizontalAlignment="Left" Margin="10,743,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
+        <Label x:Name="labelYLine" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
+        <Button x:Name="DeleteAllVectors" Content="Delete all Vectors" HorizontalAlignment="Left" Margin="550,890,0,0" VerticalAlignment="Top" Width="102" Height="23" Click="DeleteAllVectors_Click"/>
+
+
+    </Grid>
+</Window>
