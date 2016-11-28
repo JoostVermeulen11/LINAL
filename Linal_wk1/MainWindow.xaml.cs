@@ -23,6 +23,7 @@ namespace Linal_wk1
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private List<Vector> vectorList;
+        private List<Matrix> matrixList;
         private Random rnd;
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -56,7 +57,7 @@ namespace Linal_wk1
                 }
             }
         }
-        private string _selectedX1, _selectedX2, _selectedY1, _selectedY2;
+        private string _selectedX1, _selectedY1, _selectedDeltaX, _selectedDeltaY;
         public string SelectedX1
         {
             get { return _selectedX1; }
@@ -66,18 +67,6 @@ namespace Linal_wk1
                 {
                     _selectedX1 = value;
                     OnPropertyChanged("SelectedX1");
-                }
-            }
-        }
-        public string SelectedX2
-        {
-            get { return _selectedX2; }
-            set
-            {
-                if (value != _selectedX2)
-                {
-                    _selectedX2 = value;
-                    OnPropertyChanged("SelectedX2");
                 }
             }
         }
@@ -93,15 +82,27 @@ namespace Linal_wk1
                 }
             }
         }
-        public string SelectedY2
+        public string SelectedDeltaX
         {
-            get { return _selectedY2; }
+            get { return _selectedDeltaX; }
             set
             {
-                if (value != _selectedY2)
+                if (value != _selectedDeltaX)
                 {
-                    _selectedY2 = value;
-                    OnPropertyChanged("SelectedY2");
+                    _selectedDeltaX = value;
+                    OnPropertyChanged("SelectedDeltaX");
+                }
+            }
+        }
+        public string SelectedDeltaY
+        {
+            get { return _selectedDeltaY; }
+            set
+            {
+                if (value != _selectedDeltaY)
+                {
+                    _selectedDeltaY = value;
+                    OnPropertyChanged("SelectedDeltaY");
                 }
             }
         }
@@ -111,6 +112,7 @@ namespace Linal_wk1
             InitializeComponent();
             RandomColor r = new RandomColor();
             vectorList = new List<Vector>();
+            matrixList = new List<Matrix>();
             rnd = new Random();
             DataContext = this;
             AddVector.IsEnabled = false;
@@ -134,12 +136,12 @@ namespace Linal_wk1
 
         private void CreateVectors_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedX1 == "" || SelectedX2 == "" || SelectedY1 == "" || SelectedY2 == "")
+            if (SelectedX1 == "" || SelectedY1 == "" || SelectedDeltaX == "" || SelectedDeltaY == "")
                 return;
 
             try
             {
-                vectorList.Add(new Vector(Convert.ToDouble(SelectedX1), Convert.ToDouble(SelectedX2), Convert.ToDouble(SelectedY1), Convert.ToDouble(SelectedY2)));
+                vectorList.Add(new Vector(Convert.ToDouble(SelectedX1), Convert.ToDouble(SelectedY1), Convert.ToDouble(SelectedDeltaX), Convert.ToDouble(SelectedDeltaY)));
 
                 clearValues();
 
@@ -158,14 +160,18 @@ namespace Linal_wk1
             {                
                 Assenstelsel.Children.Add(vector.getVector());                
             }
+            foreach (var matrix in matrixList)
+            {
+                Assenstelsel.Children.Add(matrix.getMatrix());
+            }
         }
 
         private void clearValues()
         {
             SelectedX1 = string.Empty;
-            SelectedX2 = string.Empty;
             SelectedY1 = string.Empty;
-            SelectedY2 = string.Empty;
+            SelectedDeltaX = string.Empty;
+            SelectedDeltaY = string.Empty;
             LabelLength.Content = string.Empty;
         }
 
@@ -197,6 +203,25 @@ namespace Linal_wk1
             drawObjects();
         }
 
+        private void CreateMatrixes_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedX1 == "" || SelectedY1 == "" || SelectedDeltaX == "" || SelectedDeltaY == "")
+                return;
+
+            try
+            {
+                matrixList.Add(new Matrix(Convert.ToDouble(SelectedX1), Convert.ToDouble(SelectedY1), Convert.ToDouble(SelectedDeltaX), Convert.ToDouble(SelectedDeltaY)));
+
+                clearValues();
+
+                drawObjects();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedVector == null)
@@ -226,9 +251,15 @@ namespace Linal_wk1
                 }
 
                 SelectedX1 = (ClickedVector.xPos).ToString();
-                SelectedX2 = (ClickedVector.yPos).ToString();
+                SelectedY1 = (ClickedVector.yPos).ToString();
                 SelectedY1 = (ClickedVector.deltaX).ToString();
-                SelectedY2 = (ClickedVector.deltaY).ToString();
+                SelectedDeltaY = (ClickedVector.deltaY).ToString();
+            }
+            else if(e.OriginalSource is Rectangle)
+            {
+                Rectangle ClickedRectangle = (Rectangle)e.OriginalSource;
+
+                Matrix ClickedMatrix = matrixList.Where(i => i.deltaX == (ClickedRectangle.Width / 50) && i.deltaY == (ClickedRectangle.Height / 50) && i.getColor() == ClickedRectangle.Fill).FirstOrDefault();
             }
         }
 

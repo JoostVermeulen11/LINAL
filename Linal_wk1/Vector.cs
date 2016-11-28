@@ -9,7 +9,7 @@ using System.Windows.Shapes;
 
 namespace Linal_wk1
 {
-    public class Vector : Shape
+    public class Vector
     {
         private ArrowLine _vector;
         public double xPos { get; set; }
@@ -26,8 +26,8 @@ namespace Linal_wk1
             _vector.Stroke = RandomColor.GetRandomBrush();      
             _vector.StrokeThickness = 5;
 
-            this.xPos = x;
-            this.yPos = y;
+            xPos = x;
+            yPos = y;
             this.deltaX = deltaX;
             this.deltaY = deltaY;
 
@@ -88,14 +88,6 @@ namespace Linal_wk1
             double deltaY = vector1.deltaY - vector2.deltaY;
 
             return new Vector(x, y, deltaX, deltaY);
-        }
-
-        protected override Geometry DefiningGeometry
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }
