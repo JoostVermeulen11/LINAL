@@ -43,6 +43,19 @@ namespace Linal_wk1
                 }
             }
         }
+        private Vector _selectedVector2;
+        public Vector SelectedVector2
+        {
+            get { return _selectedVector2; }
+            set
+            {
+                if (value != _selectedVector2)
+                {
+                    _selectedVector2 = value;
+                    OnPropertyChanged("SelectedVector2");
+                }
+            }
+        }
         private string _selectedX1, _selectedX2, _selectedY1, _selectedY2;
         public string SelectedX1
         {
@@ -100,6 +113,7 @@ namespace Linal_wk1
             vectorList = new List<Vector>();
             rnd = new Random();
             DataContext = this;
+            AddVector.IsEnabled = false;
 
             for (int i = 1; i <= 9; i++)
             { 
@@ -161,11 +175,33 @@ namespace Linal_wk1
             Assenstelsel.Children.Clear();
         }
 
+        private void AddVector_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedVector == null || SelectedVector2 == null)
+                return;
+
+            vectorList.Add(Vector.ADD(SelectedVector, SelectedVector2));
+            AddVector.IsEnabled = false;
+            clearValues();
+            drawObjects();
+        }
+
+        private void DistractVector_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedVector == null || SelectedVector2 == null)
+                return;
+
+            vectorList.Add(Vector.DISTRACT(SelectedVector, SelectedVector2));
+            AddVector.IsEnabled = false;
+            clearValues();
+            drawObjects();
+        }
+
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedVector == null)
                 return;
-
+           
             vectorList.Remove(SelectedVector);
 
             clearValues();
@@ -179,14 +215,20 @@ namespace Linal_wk1
             {
                 ArrowLine ClickedArrow = (ArrowLine)e.OriginalSource;
 
-                Vector ClickedVector = vectorList.Where(i => i.x1 == ClickedArrow.X1 && i.x2 == ClickedArrow.X2 && i.y1 == ClickedArrow.Y1 && i.y2 == ClickedArrow.Y2).FirstOrDefault();
+                Vector ClickedVector = vectorList.Where(i => i.xPos == ClickedArrow.X1 / 50 && i.yPos == ClickedArrow.Y1 / 50 && (i.xPos + i.deltaX) == ClickedArrow.X2 / 50 && (i.yPos + i.deltaY) == ClickedArrow.Y2 / 50).FirstOrDefault();
 
-                SelectedVector = ClickedVector;
+                if(SelectedVector == null)
+                    SelectedVector = ClickedVector;
+                else
+                {
+                    SelectedVector2 = ClickedVector;
+                    AddVector.IsEnabled = true;
+                }
 
-                SelectedX1 = (ClickedVector.x1 / 50).ToString();
-                SelectedX2 = (ClickedVector.x2 / 50).ToString();
-                SelectedY1 = (ClickedVector.y1 / 50).ToString();
-                SelectedY2 = (ClickedVector.y2 / 50).ToString();
+                SelectedX1 = (ClickedVector.xPos).ToString();
+                SelectedX2 = (ClickedVector.yPos).ToString();
+                SelectedY1 = (ClickedVector.deltaX).ToString();
+                SelectedY2 = (ClickedVector.deltaY).ToString();
             }
         }
 
@@ -195,7 +237,7 @@ namespace Linal_wk1
             if (SelectedVector == null)
                 return;
             else
-                SelectedVector.Scale(int.Parse(textScale.Text));
+                SelectedVector.Scale(double.Parse(txtScaleX.Text), double.Parse(txtScaleY.Text));
 
             drawObjects();
         }
