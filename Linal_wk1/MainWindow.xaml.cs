@@ -106,6 +106,19 @@ namespace Linal_wk1
                 }
             }
         }
+        private Matrix _selectedMatrix;
+        public Matrix SelectedMatrix
+        {
+            get { return _selectedMatrix; }
+            set
+            {
+                if (value != _selectedMatrix)
+                {
+                    _selectedMatrix = value;
+                    OnPropertyChanged("SelectedMatrix");
+                }
+            }
+        }
 
         public MainWindow()
         {
@@ -222,6 +235,13 @@ namespace Linal_wk1
             }
         }
 
+        private void scaleMatrix_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedMatrix.Scale(double.Parse(scaleMatrixX.Text), double.Parse(scaleMatrixY.Text));
+
+
+        }
+
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)
         {
             if (SelectedVector == null)
@@ -260,6 +280,10 @@ namespace Linal_wk1
                 Rectangle ClickedRectangle = (Rectangle)e.OriginalSource;
 
                 Matrix ClickedMatrix = matrixList.Where(i => i.deltaX == (ClickedRectangle.Width / 50) && i.deltaY == (ClickedRectangle.Height / 50) && i.getColor() == ClickedRectangle.Fill).FirstOrDefault();
+                if (SelectedMatrix == null)
+                    SelectedMatrix = ClickedMatrix;
+                
+
             }
         }
 
