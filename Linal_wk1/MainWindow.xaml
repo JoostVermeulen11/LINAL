@@ -67,7 +67,7 @@
         <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="695,862,0,0" VerticalAlignment="Top" Width="140" Height="23" Click="AddVector_Click" />
         <Button x:Name="DistractVector" Content="Distract selected Vectors" HorizontalAlignment="Left" Margin="694,890,0,0" VerticalAlignment="Top" Width="141" Height="23" Click="DistractVector_Click"/>
         <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="10,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="872,33,201,719" >
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="872,33,191,642" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="X1:"></Label>
@@ -94,7 +94,17 @@
                     <Label Content="scaleY:"></Label>
                     <TextBox Name="scaleMatrixY" Width="180"></TextBox>
                 </StackPanel>
-                <Button Content="Scale Matrix" Name="scaleMatrix" Click="scaleMatrix_Click"/>
+                <Button Content="Scale Matrix" x:Name="scaleMatrix" Click="scaleMatrix_Click" Height="28"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="TranslateX:"></Label>
+                    <TextBox Name="translateMatrixX" Width="159"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="TranslateY:"></Label>
+                    <TextBox Name="translateMatrixY" Width="159"></TextBox>
+                </StackPanel>
+                <Button Content="Translate Matrix" x:Name="translateMatrix" Height="28" Click="translateMatrix_Click"/>
+
 
             </StackPanel>
         </Border>

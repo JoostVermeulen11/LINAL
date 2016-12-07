@@ -238,8 +238,11 @@ namespace Linal_wk1
         private void scaleMatrix_Click(object sender, RoutedEventArgs e)
         {
             SelectedMatrix.Scale(double.Parse(scaleMatrixX.Text), double.Parse(scaleMatrixY.Text));
+        }
 
-
+        private void translateMatrix_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)

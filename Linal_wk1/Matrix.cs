@@ -41,15 +41,13 @@ namespace Linal_wk1
         public void Scale(double factorX, double factorY)
         {
             /*
-             *| factorX  0 | x as vergroten
-             *| 0  factorY | y as vergroten
+             *| factorX | x as vergroten
+             *| factorY | y as vergroten
              *          *
              *| a  d  e |
              *| b  c  f |
              */
-
-            List<double> scaleMatrix = new List<double>();
-            
+            List<double> scaleMatrix = new List<double>();            
             scaleMatrix.Add(factorX);
             scaleMatrix.Add(factorY);
 
@@ -75,6 +73,11 @@ namespace Linal_wk1
                 _matrix.Width = (newXAs[2] - newXAs[0]) * blokSize;
                 _matrix.Height = (newYAs[2] - newYAs[0]) * blokSize;
             }
+        }
+
+        public void Translate(double newX, double newY)
+        {
+
         }
 
         public Brush getColor()
