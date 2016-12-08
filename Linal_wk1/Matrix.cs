@@ -42,17 +42,17 @@ namespace Linal_wk1
             _color = RandomColor.GetRandomBrush();
         }
 
-        public static Matrix multiply(Matrix m1, Matrix m2)
+        public void multiply(Matrix m1)
         {
-            if (m1.width != m2.height)
+            if (m1.width != height)
             {
-                return null;
+                return;
             }
 
             double[,] ma1 = m1.matrix;
-            double[,] ma2 = m2.matrix;
+            double[,] ma2 = matrix;
 
-            double[,] result = new double[m1.height, m2.width];
+            double[,] result = new double[m1.height, width];
 
             for (int i = 0; i < result.GetLength(0); i++)
             {
@@ -66,7 +66,12 @@ namespace Linal_wk1
                 }
             }
 
-            return new Matrix(result);
+            matrix = result;
+        }
+
+        public void translate(Matrix m1)
+        {
+            
         }
 
         public void drawMatrix()

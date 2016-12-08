@@ -230,18 +230,30 @@ namespace Linal_wk1
 
         private void ScaleMatrix_Click(object sender, RoutedEventArgs e)
         {
-            Matrix matrix1 = new Matrix(new double[,]
+            Matrix scaleMatrix = new Matrix(new double[,]
             {
                 {double.Parse(ScaleMatrixX.Text), 0},
                 {0, double.Parse(ScaleMatrixY.Text)}
             });
 
-            matrixList.Add(Matrix.multiply(matrix1, SelectedMatrix));
+            SelectedMatrix.multiply(scaleMatrix);
 
             drawObjects();
 
             SelectedMatrix.getRectangle().Opacity = 1;
             SelectedMatrix = null;
+        }
+
+        private void TranslateMatrix_Click(object sender, RoutedEventArgs e)
+        {
+            Matrix translateMatrix = new Matrix(new double[,]
+            {
+                {1,0, double.Parse(translateMatrixX.Text)},
+                {0,1, double.Parse(TranslateMatrixY.Text)},
+                {0,0,1}
+            });
+
+
         }
 
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)

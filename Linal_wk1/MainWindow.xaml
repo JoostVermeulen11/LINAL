@@ -67,7 +67,7 @@
         <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="695,862,0,0" VerticalAlignment="Top" Width="140" Height="23" Click="AddVector_Click" />
         <Button x:Name="DistractVector" Content="Distract selected Vectors" HorizontalAlignment="Left" Margin="694,890,0,0" VerticalAlignment="Top" Width="141" Height="23" Click="DistractVector_Click"/>
         <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="10,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,203,710" >
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,203,680" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="X1:"></Label>
@@ -105,13 +105,21 @@
                     <Label Content="Scale Y:"></Label>
                     <TextBox Name="ScaleMatrixY" Width="180"></TextBox>
                 </StackPanel>
-
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Translate X:"></Label>
+                    <TextBox Name="translateMatrixX" Width="160"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Translate Y:"></Label>
+                    <TextBox Name="TranslateMatrixY" Width="160"></TextBox>
+                </StackPanel>
 
             </StackPanel>
         </Border>
         <Label x:Name="label2_Copy" Content="Matrix" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="CreateMatrixes" Content="Create Matrix" HorizontalAlignment="Left" Margin="872,213,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.49,-0.15" Click="CreateMatrixes_Click"/>
-        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="960,213,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
+        <Button x:Name="CreateMatrixes" Content="Create Matrix" HorizontalAlignment="Left" Margin="872,240,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.49,-0.15" Click="CreateMatrixes_Click"/>
+        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="960,240,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
+        <Button x:Name="TranslateMatrix" Content="Translate selected Matrix" HorizontalAlignment="Left" Margin="872,265,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="TranslateMatrix_Click"/>
 
     </Grid>
 </Window>
