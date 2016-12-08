@@ -12,72 +12,102 @@ namespace Linal_wk1
 {
     public class Matrix
     {
-        private static int blokSize = 50;
-        public double xPos { get; set; }
-        public double yPos { get; set; }
-        public double deltaX { get; set; }
-        public double deltaY { get; set; }
-
+        private static int blockSize = 50;
         private Rectangle _matrix;
+        private Brush _color;
+        private Point xy1, xy2, xy3, xy4;
+        public double[,] matrix { get; set; }
 
-        public Matrix(double xPos, double yPos, double deltaX, double deltaY)
+        public int width
         {
-            _matrix = new Rectangle();
-            _matrix.Fill = RandomColor.GetRandomBrush();
-
-
-            _matrix.Height = deltaY * blokSize;
-            _matrix.Width = deltaX * blokSize;
-
-            Canvas.SetLeft(_matrix, (xPos * blokSize));
-            Canvas.SetTop(_matrix, (yPos * blokSize));
-
-            this.xPos = xPos;
-            this.yPos = yPos;
-            this.deltaX = deltaX;
-            this.deltaY = deltaY;            
+            get
+            {
+                return matrix.GetLength(1);
+            }
         }
 
-        public void Scale(double factorX, double factorY)
+
+        public int height
+        {
+            get
+            {
+                return matrix.GetLength(0);
+            }
+        }
+
+        public Matrix(double[,] arr)
+        {
+            matrix = arr;
+
+            _color = RandomColor.GetRandomBrush();
+        }
+
+        public static Matrix multiply(Matrix m1, Matrix m2)
+        {
+            if (m1.width != m2.height)
+            {
+                return null;
+            }
+
+            double[,] ma1 = m1.matrix;
+            double[,] ma2 = m2.matrix;
+
+            double[,] result = new double[m1.height, m2.width];
+
+            for (int i = 0; i < result.GetLength(0); i++)
+            {
+                for (int j = 0; j < result.GetLength(1); j++)
+                {
+                    result[i, j] = 0;
+                    for (int k = 0; k < m1.width; k++)
+                    {
+                        result[i, j] = result[i, j] + ma1[i, k] * ma2[k, j];
+                    }
+                }
+            }
+
+            return new Matrix(result);
+        }
+
+        public void drawMatrix()
         {
             /*
-             *| factorX | x as vergroten
-             *| factorY | y as vergroten
-             *          *
-             *| a  d  e |
-             *| b  c  f |
+             *    xy1     xy2
+             * 
+             *    xy3     xy4
              */
-            List<double> scaleMatrix = new List<double>();            
-            scaleMatrix.Add(factorX);
-            scaleMatrix.Add(factorY);
+            _matrix = new Rectangle();
 
-            List<double> xAs = new List<double>() { xPos, xPos, xPos + deltaX, xPos + deltaX };
-            List<double> newXAs = new List<double>();
-            List<double> yAs = new List<double>() { yPos, yPos, yPos + deltaY, yPos + deltaY };
-            List<double> newYAs = new List<double>();
-
-            foreach (double number in xAs)
+            for (int i = 0; i < height; i+=2)
             {
-                double newNumber = (scaleMatrix[0] * number) - xPos;
-                newXAs.Add(newNumber);
+                for (int j = 0; j < width; j++)
+                {
+                    if (j == 0)
+                    {
+                        xy1 = new Point(matrix[i, j], matrix[i + 1, j]);
+                    }
+                    if (j == 1)
+                    {
+                        xy2 = new Point(matrix[i, j], matrix[i + 1, j]);
+                    }
+                    if (j == 2)
+                    {
+                        xy3 = new Point(matrix[i, j], matrix[i + 1, j]);
+                    }
+                    if (j == 3)
+                    {
+                        xy4 = new Point(matrix[i, j], matrix[i + 1, j]);
+                    }
+                }
             }
 
-            foreach (double number in yAs)
-            {
-                double newNumber = (scaleMatrix[1] * number) - yPos;
-                newYAs.Add(newNumber);
-            }
+            _matrix.Width = (xy4.X - xy3.X) * blockSize;
+            _matrix.Height = (xy1.Y - xy3.Y) * blockSize;
 
-            if(factorX > 0)
-            {
-                _matrix.Width = (newXAs[2] - newXAs[0]) * blokSize;
-                _matrix.Height = (newYAs[2] - newYAs[0]) * blokSize;
-            }
-        }
+            Canvas.SetLeft(_matrix, xy3.X * blockSize);
+            Canvas.SetTop(_matrix, xy3.Y * blockSize);
 
-        public void Translate(double newX, double newY)
-        {
-
+            _matrix.Fill = _color;
         }
 
         public Brush getColor()
@@ -85,10 +115,9 @@ namespace Linal_wk1
             return _matrix.Fill;
         }
 
-        public Rectangle getMatrix()
+        public Rectangle getRectangle()
         {
             return _matrix;
         }
-
     }
 }

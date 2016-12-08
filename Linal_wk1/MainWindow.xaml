@@ -67,49 +67,51 @@
         <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="695,862,0,0" VerticalAlignment="Top" Width="140" Height="23" Click="AddVector_Click" />
         <Button x:Name="DistractVector" Content="Distract selected Vectors" HorizontalAlignment="Left" Margin="694,890,0,0" VerticalAlignment="Top" Width="141" Height="23" Click="DistractVector_Click"/>
         <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="10,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="872,33,191,642" >
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,203,710" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="X1:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Width="200"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX1" Width="55"></TextBox>
                     <Label Content="Y1:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.yPos}" Width="200"></TextBox>
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixY1" Width="55"></TextBox>
+                    <Label Content="Left up"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="DeltaX:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.deltaX}" Width="179"></TextBox>
+                    <Label Content="X2:"></Label>
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX2" Width="55"></TextBox>
+                    <Label Content="Y2:"></Label>
+                    <TextBox Text="{Binding SelectedMatrix.xPos}" x:Name="matrixY2" Width="55"/>
+                    <Label Content="Right up"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="DeltaY:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.deltaY}" Width="179"></TextBox>
-                </StackPanel>
-                <Label>scale:</Label>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="scaleX:"></Label>
-                    <TextBox Name="scaleMatrixX" Width="179"></TextBox>
+                    <Label Content="X3:"></Label>
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX3" Width="55"></TextBox>
+                    <Label Content="Y3:"></Label>
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixY3" Width="55"></TextBox>
+                    <Label Content="Left down"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="scaleY:"></Label>
-                    <TextBox Name="scaleMatrixY" Width="180"></TextBox>
-                </StackPanel>
-                <Button Content="Scale Matrix" x:Name="scaleMatrix" Click="scaleMatrix_Click" Height="28"/>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="TranslateX:"></Label>
-                    <TextBox Name="translateMatrixX" Width="159"></TextBox>
+                    <Label Content="X4:"></Label>
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX4" Width="55"></TextBox>
+                    <Label Content="Y4:"></Label>
+                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixY4" Width="55"></TextBox>
+                    <Label Content="Right down"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="TranslateY:"></Label>
-                    <TextBox Name="translateMatrixY" Width="159"></TextBox>
+                    <Label Content="Scale X:"></Label>
+                    <TextBox Name="ScaleMatrixX" Width="180"></TextBox>
                 </StackPanel>
-                <Button Content="Translate Matrix" x:Name="translateMatrix" Height="28" Click="translateMatrix_Click"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Scale Y:"></Label>
+                    <TextBox Name="ScaleMatrixY" Width="180"></TextBox>
+                </StackPanel>
 
 
             </StackPanel>
         </Border>
-        <Label x:Name="label2_Copy" Content="Selected Matrix" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="CreateMatrixes" Content="Create Matrix" HorizontalAlignment="Left" Margin="88,890,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.49,-0.15" Click="CreateMatrixes_Click"/>
+        <Label x:Name="label2_Copy" Content="Matrix" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="CreateMatrixes" Content="Create Matrix" HorizontalAlignment="Left" Margin="872,213,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.49,-0.15" Click="CreateMatrixes_Click"/>
+        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="960,213,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
 
     </Grid>
 </Window>

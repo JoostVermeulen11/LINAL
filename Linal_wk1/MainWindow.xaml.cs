@@ -175,7 +175,8 @@ namespace Linal_wk1
             }
             foreach (var matrix in matrixList)
             {
-                Assenstelsel.Children.Add(matrix.getMatrix());
+                matrix.drawMatrix();
+                Assenstelsel.Children.Add(matrix.getRectangle());
             }
         }
 
@@ -218,31 +219,29 @@ namespace Linal_wk1
 
         private void CreateMatrixes_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedX1 == "" || SelectedY1 == "" || SelectedDeltaX == "" || SelectedDeltaY == "")
-                return;
-
-            try
+            matrixList.Add(new Matrix(new double[,]
             {
-                matrixList.Add(new Matrix(Convert.ToDouble(SelectedX1), Convert.ToDouble(SelectedY1), Convert.ToDouble(SelectedDeltaX), Convert.ToDouble(SelectedDeltaY)));
+                {double.Parse(matrixX1.Text), double.Parse(matrixX2.Text), double.Parse(matrixX3.Text), double.Parse(matrixX4.Text) },
+                {double.Parse(matrixY1.Text), double.Parse(matrixY2.Text), double.Parse(matrixY3.Text), double.Parse(matrixY4.Text) }
+            }));
 
-                clearValues();
-
-                drawObjects();
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-            }
+            drawObjects();
         }
 
-        private void scaleMatrix_Click(object sender, RoutedEventArgs e)
+        private void ScaleMatrix_Click(object sender, RoutedEventArgs e)
         {
-            SelectedMatrix.Scale(double.Parse(scaleMatrixX.Text), double.Parse(scaleMatrixY.Text));
-        }
+            Matrix matrix1 = new Matrix(new double[,]
+            {
+                {double.Parse(ScaleMatrixX.Text), 0},
+                {0, double.Parse(ScaleMatrixY.Text)}
+            });
 
-        private void translateMatrix_Click(object sender, RoutedEventArgs e)
-        {
-            
+            matrixList.Add(Matrix.multiply(matrix1, SelectedMatrix));
+
+            drawObjects();
+
+            SelectedMatrix.getRectangle().Opacity = 1;
+            SelectedMatrix = null;
         }
 
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)
@@ -278,15 +277,16 @@ namespace Linal_wk1
                 SelectedY1 = (ClickedVector.deltaX).ToString();
                 SelectedDeltaY = (ClickedVector.deltaY).ToString();
             }
-            else if(e.OriginalSource is Rectangle)
+            else if (e.OriginalSource is Rectangle)
             {
                 Rectangle ClickedRectangle = (Rectangle)e.OriginalSource;
 
-                Matrix ClickedMatrix = matrixList.Where(i => i.deltaX == (ClickedRectangle.Width / 50) && i.deltaY == (ClickedRectangle.Height / 50) && i.getColor() == ClickedRectangle.Fill).FirstOrDefault();
+                Matrix ClickedMatrix = matrixList.Where(i => i.getColor() == ClickedRectangle.Fill && ClickedRectangle.Height == i.getRectangle().Height && ClickedRectangle.Width == i.getRectangle().Width).FirstOrDefault();
+
                 if (SelectedMatrix == null)
                     SelectedMatrix = ClickedMatrix;
-                
 
+                SelectedMatrix.getRectangle().Opacity = 0.5;
             }
         }
 
