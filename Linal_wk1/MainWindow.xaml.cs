@@ -253,7 +253,12 @@ namespace Linal_wk1
                 {0,0,1}
             });
 
+            SelectedMatrix.translate(translateMatrix);
 
+            drawObjects();
+
+            SelectedMatrix.getRectangle().Opacity = 1;
+            SelectedMatrix = null;
         }
 
         private void DeleteVectors_Click(object sender, RoutedEventArgs e)

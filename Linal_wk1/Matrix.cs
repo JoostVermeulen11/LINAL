@@ -54,9 +54,9 @@ namespace Linal_wk1
 
             double[,] result = new double[m1.height, width];
 
-            for (int i = 0; i < result.GetLength(0); i++)
+            for (int i = 0; i < result.GetLength(0);/*height*/ i++)
             {
-                for (int j = 0; j < result.GetLength(1); j++)
+                for (int j = 0; j < result.GetLength(1);/*width*/ j++)
                 {
                     result[i, j] = 0;
                     for (int k = 0; k < m1.width; k++)
@@ -71,7 +71,35 @@ namespace Linal_wk1
 
         public void translate(Matrix m1)
         {
-            
+            if (m1.width != height)
+            {
+                matrix = new double[,] {
+                    {xy1.X, xy2.X, xy3.X, xy4.X },
+                    {xy1.Y, xy2.Y, xy3.Y, xy4.Y },
+                    {1,1,1,1}
+                };
+            }
+
+            double[,] ma1 = m1.matrix;
+            double[,] ma2 = matrix;
+
+            double[,] result = new double[m1.height, width];
+
+            for (int i = 0; i < result.GetLength(0);/*height*/ i++)
+            {
+                for (int j = 0; j < result.GetLength(1);/*width*/ j++)
+                {
+                    for (int k = 0; k < m1.width; k++)
+                    {
+                        if(i == 2)                        
+                            result[i, j] = 1;                        
+                        else
+                            result[i, j] = ma1[i, 2] + ma2[i, j];
+                    }
+                }
+            }
+
+            matrix = result;
         }
 
         public void drawMatrix()
@@ -83,7 +111,7 @@ namespace Linal_wk1
              */
             _matrix = new Rectangle();
 
-            for (int i = 0; i < height; i+=2)
+            for (int i = 0; i < height; i+=5)
             {
                 for (int j = 0; j < width; j++)
                 {
@@ -105,6 +133,11 @@ namespace Linal_wk1
                     }
                 }
             }
+
+            matrix = new double[,] {
+                {xy1.X, xy2.X, xy3.X, xy4.X },
+                {xy1.Y, xy2.Y, xy3.Y, xy4.Y }          
+            };
 
             _matrix.Width = (xy4.X - xy3.X) * blockSize;
             _matrix.Height = (xy1.Y - xy3.Y) * blockSize;
