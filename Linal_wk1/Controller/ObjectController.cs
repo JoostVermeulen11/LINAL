@@ -5,6 +5,8 @@ using System.Text;
 
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Linal_wk1
 {
@@ -23,7 +25,7 @@ namespace Linal_wk1
             createObjects();
 
             _timer = new Timer();
-            _timer.Interval = 500;
+            _timer.Interval = 100;
             _timer.Elapsed += new ElapsedEventHandler(Animate);
 
             Draw();
@@ -49,13 +51,15 @@ namespace Linal_wk1
             //}));
         }
 
-        [STAThread]
         private void Animate(object sender, EventArgs e)
-        {          
-            foreach(var matrix in matrixList)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                RotateSpecificPoint(matrix, 10, 11, 1);
-            }
+                foreach (var matrix in matrixList)
+                {
+                    RotateSpecificPoint(matrix, 10, 11, 1);
+                }
+            });
         }
 
         public void ADDVector(Vector v1, Vector v2)
