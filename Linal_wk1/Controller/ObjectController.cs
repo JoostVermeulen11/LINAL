@@ -15,8 +15,7 @@ namespace Linal_wk1
         private List<Vector> vectorList;
         private List<Matrix> matrixList;
         private MainWindow _main;
-        private Timer _timer;
-        public double AnimateX, AnimateY, degrees;
+        private Timer _timer; 
         public Matrix SelectedMatrix;
 
         public ObjectController(MainWindow _main)
@@ -57,7 +56,12 @@ namespace Linal_wk1
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                RotateSpecificPoint(SelectedMatrix, degrees, AnimateX, AnimateY);
+                foreach (var matrix in matrixList)
+                {
+                    if(matrix.animate)
+                        RotateSpecificPoint(matrix, matrix.Degrees, matrix.X, matrix.Y);
+
+                }
             });
         }
 

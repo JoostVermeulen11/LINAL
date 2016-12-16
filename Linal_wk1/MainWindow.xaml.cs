@@ -179,21 +179,45 @@ namespace Linal_wk1
 
         private void Animate_Click(object sender, RoutedEventArgs e)
         {
-            _controller.AnimateX = double.Parse(RotateSpecificX.Text);
-            _controller.AnimateY = double.Parse(RotateSpecificY.Text);
-            _controller.degrees = double.Parse(RotateText.Text);
             _controller.SelectedMatrix = SelectedMatrix;
+            _controller.SelectedMatrix.animate = true;
+            _controller.SelectedMatrix.X = double.Parse(RotateSpecificX.Text);
+            _controller.SelectedMatrix.Y = double.Parse(RotateSpecificY.Text);
+            _controller.SelectedMatrix.Degrees = double.Parse(RotateText.Text);
+  
             _controller.getTimer().Start();
 
+            SelectedMatrix.getLine().Opacity = 1;
             SelectedMatrix = null;
+            _controller.SelectedMatrix = null;    
         }
 
         private void StopAnimate_Click(object sender, RoutedEventArgs e)
         {
-            _controller.getTimer().Stop();
+            if(SelectedMatrix != null)
+            {
+                _controller.SelectedMatrix = SelectedMatrix;
+                _controller.SelectedMatrix.animate = false;
+                SelectedMatrix.getLine().Opacity = 1;                
+            }                           
 
-            _controller.SelectedMatrix = null;
-            SelectedMatrix.getLine().Opacity = 1;
+            if (_controller.getMatrixes().All(item => item.animate == false))
+            {
+                _controller.getTimer().Stop();
+            }
+
+            SelectedMatrix = null;
+        }
+
+        private void StopAnimateAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var matrix in _controller.getMatrixes())
+            {
+                if (matrix.animate)
+                    matrix.animate = false;
+            }
+
+            _controller.getTimer().Stop();           
         }
     }
 }

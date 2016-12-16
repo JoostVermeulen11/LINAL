@@ -17,6 +17,8 @@ namespace Linal_wk1
         private Polyline _line;
         private PointCollection _collection;
         private Point[] points;
+        public double Degrees, X, Y;
+        public bool animate = false;
         public double[,] matrix { get; set; }
 
         public int width
