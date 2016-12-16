@@ -56,8 +56,8 @@ namespace Linal_wk1
                 }
             }
         }
-        private Matrix _selectedMatrix;
-        public Matrix SelectedMatrix
+        private Matrix2D _selectedMatrix;
+        public Matrix2D SelectedMatrix
         {
             get { return _selectedMatrix; }
             set
@@ -144,7 +144,7 @@ namespace Linal_wk1
             {
                 Polyline ClickedRectangle = (Polyline)e.OriginalSource;
 
-                Matrix ClickedMatrix = _controller.getMatrixes().Where(i => i.getColor() == ClickedRectangle.Stroke).FirstOrDefault();
+                Matrix2D ClickedMatrix = _controller.getMatrixes().Where(i => i.getColor() == ClickedRectangle.Stroke).FirstOrDefault();
 
                 if (SelectedMatrix == null)
                     SelectedMatrix = ClickedMatrix;

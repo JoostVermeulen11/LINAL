@@ -10,7 +10,7 @@ using System.Windows.Shapes;
 
 namespace Linal_wk1
 {
-    public class Matrix
+    public class Matrix2D
     {
         //TODO scale and rotate origin from matrices
         private static int blockSize = 50;
@@ -37,7 +37,7 @@ namespace Linal_wk1
             }
         }
 
-        public Matrix(double[,] arr)
+        public Matrix2D(double[,] arr)
         {
             matrix = arr;
             
@@ -52,12 +52,12 @@ namespace Linal_wk1
         {
             double radians = ConvertToRadians(degrees);
             
-            Matrix rotationMatrix = createRotationMatrix(Math.Cos(radians), Math.Sin(radians));
+            Matrix2D rotationMatrix = createRotationMatrix(Math.Cos(radians), Math.Sin(radians));
 
             Scale(rotationMatrix);
         }
 
-        public void Scale(Matrix m1)
+        public void Scale(Matrix2D m1)
         {
             if (m1.width != height)
             {
@@ -84,7 +84,7 @@ namespace Linal_wk1
             matrix = result;
         }
 
-        public void Translate(Matrix m1)
+        public void Translate(Matrix2D m1)
         {
             if (m1.width != height)
             {
@@ -114,27 +114,27 @@ namespace Linal_wk1
         }
 
 
-        public static Matrix createIdentityMatrix(double translateX, double TranslateY)
+        public static Matrix2D createIdentityMatrix(double translateX, double TranslateY)
         {
-            return new Matrix(new double[,] {
+            return new Matrix2D(new double[,] {
                 {1,0,translateX},
                 {0,1,TranslateY},
                 {0,0,1}                    
             });
         }
 
-        public static Matrix createScaleMatrix(double scaleX, double scaleY)
+        public static Matrix2D createScaleMatrix(double scaleX, double scaleY)
         {
-            return new Matrix(new double[,] {
+            return new Matrix2D(new double[,] {
                 {scaleX,0,0},
                 {0,scaleY,0},
                 {0,0,0}
             });
         }
 
-        private Matrix createRotationMatrix(double cos, double sin)
+        private Matrix2D createRotationMatrix(double cos, double sin)
         {
-            return new Matrix(new double[,] {
+            return new Matrix2D(new double[,] {
                 {cos,   sin*-1, 0},
                 {sin    ,cos, 0},
                 {0,0,0},

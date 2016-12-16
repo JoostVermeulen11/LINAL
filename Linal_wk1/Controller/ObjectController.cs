@@ -13,16 +13,16 @@ namespace Linal_wk1
     class ObjectController
     {
         private List<Vector> vectorList;
-        private List<Matrix> matrixList;
+        private List<Matrix2D> matrixList;
         private MainWindow _main;
         private Timer _timer; 
-        public Matrix SelectedMatrix;
+        public Matrix2D SelectedMatrix;
 
         public ObjectController(MainWindow _main)
         {
             this._main = _main;
             vectorList = new List<Vector>();
-            matrixList = new List<Matrix>();
+            matrixList = new List<Matrix2D>();
             createObjects();
 
             _timer = new Timer();
@@ -34,17 +34,17 @@ namespace Linal_wk1
 
         private void createObjects()
         {
-            vectorList.Add(new Vector(4, 4, 4, 1));
-            vectorList.Add(new Vector(4, 4, 2, 2));
+            vectorList.Add(new Vector(3, 3, 3, 1));
+            vectorList.Add(new Vector(3, 3, 2, 2));
 
-            matrixList.Add(new Matrix(new double[,]
+            matrixList.Add(new Matrix2D(new double[,]
             {
-                {11,11,12,12},
-                {2,1,1,2},
+                {3,3,2,2},
+                {10,9,9,10},
                 {1,1,1,1}
             }));
 
-            matrixList.Add(new Matrix(new double[,]
+            matrixList.Add(new Matrix2D(new double[,]
             {
                 {1,1,2,2},
                 {2,1,1,2},
@@ -77,34 +77,34 @@ namespace Linal_wk1
             Draw();
         }
 
-        public void ScaleMatrix(double x, double y, Matrix m)
+        public void ScaleMatrix(double x, double y, Matrix2D m)
         {
-            Matrix scaleMatrix = Matrix.createScaleMatrix(x,y);
+            Matrix2D scaleMatrix = Matrix2D.createScaleMatrix(x,y);
             m.Scale(scaleMatrix);
             Draw();
         }
 
-        public void TranslateMatrix(double x, double y, Matrix m)
+        public void TranslateMatrix(double x, double y, Matrix2D m)
         {
-            Matrix translateMatrix = Matrix.createIdentityMatrix(x,y);
+            Matrix2D translateMatrix = Matrix2D.createIdentityMatrix(x,y);
             m.Translate(translateMatrix);
             Draw();
         }
 
-        public void RotateMatrix(double degrees, Matrix m)
+        public void RotateMatrix(double degrees, Matrix2D m)
         {
             m.Rotate(degrees);
             Draw();
         }
 
-        public void RotateSpecificPoint(Matrix m, double degrees, double xPoint, double yPoint)
+        public void RotateSpecificPoint(Matrix2D m, double degrees, double xPoint, double yPoint)
         {
-            Matrix translateMatrix = Matrix.createIdentityMatrix(xPoint * -1, yPoint * -1);
+            Matrix2D translateMatrix = Matrix2D.createIdentityMatrix(xPoint * -1, yPoint * -1);
             m.Translate(translateMatrix);
             
             m.Rotate(degrees);
 
-            translateMatrix = Matrix.createIdentityMatrix(xPoint, yPoint);
+            translateMatrix = Matrix2D.createIdentityMatrix(xPoint, yPoint);
             m.Translate(translateMatrix);
 
             Draw();
@@ -134,7 +134,7 @@ namespace Linal_wk1
             return _timer;
         }
 
-        public List<Matrix> getMatrixes()
+        public List<Matrix2D> getMatrixes()
         {
             return matrixList;
         }

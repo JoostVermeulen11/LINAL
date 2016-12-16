@@ -56,10 +56,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\ObjectController.cs" />
+    <Compile Include="Model\Matrix3D.cs" />
     <Compile Include="Other\ArrowEnds.cs" />
     <Compile Include="Other\ArrowLine.cs" />
     <Compile Include="Other\ArrowLineBase.cs" />
-    <Compile Include="Model\Matrix.cs" />
+    <Compile Include="Model\Matrix2D.cs" />
     <Compile Include="Other\RandomColor.cs" />
     <Compile Include="Model\Vector.cs" />
     <Page Include="MainWindow.xaml">
