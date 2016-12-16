@@ -78,16 +78,5 @@ namespace Linal_wk1
 
             return new Vector(x, y, deltaX, deltaY);
         }
-
-        public static Vector DISTRACT(Vector vector1, Vector vector2)
-        {
-            double x = vector1.xPos;
-            double y = vector1.yPos;
-
-            double deltaX = vector1.deltaX - vector2.deltaX;
-            double deltaY = vector1.deltaY - vector2.deltaY;
-
-            return new Vector(x, y, deltaX, deltaY);
-        }
     }
 }

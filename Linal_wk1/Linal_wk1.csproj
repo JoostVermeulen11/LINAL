@@ -55,12 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ArrowEnds.cs" />
-    <Compile Include="ArrowLine.cs" />
-    <Compile Include="ArrowLineBase.cs" />
-    <Compile Include="Matrix.cs" />
-    <Compile Include="RandomColor.cs" />
-    <Compile Include="Vector.cs" />
+    <Compile Include="Controller\ObjectController.cs" />
+    <Compile Include="Other\ArrowEnds.cs" />
+    <Compile Include="Other\ArrowLine.cs" />
+    <Compile Include="Other\ArrowLineBase.cs" />
+    <Compile Include="Model\Matrix.cs" />
+    <Compile Include="Other\RandomColor.cs" />
+    <Compile Include="Model\Vector.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -28,75 +28,25 @@
                 </DrawingBrush>
             </Canvas.Background>
         </Canvas>
-        <Button x:Name="CreateVectors" Content="Create Vector" HorizontalAlignment="Left" Margin="195,890,0,0" VerticalAlignment="Top" Width="102" Click="CreateVectors_Click"/>
-        <Button x:Name="DeleteVectors" Content="Delete Vector" HorizontalAlignment="Left" Margin="373,890,0,0" VerticalAlignment="Top" Width="102" Click="DeleteVectors_Click" Height="23"/>
-        <Label x:Name="label" Content="Selected vector" HorizontalAlignment="Left" Margin="373,771,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LabelLength" Content="{Binding Path=SelectedVector.Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="472,862,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.192,0.609"/>
-        <Label x:Name="label_Copy"  HorizontalAlignment="Left" Content="Length" Margin="371,862,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelScale"  HorizontalAlignment="Left" Content="ScaleX" Margin="373,803,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtScaleX" HorizontalAlignment="Left" Height="23" Margin="472,806,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="scaleVector" Content="Scale Vector" HorizontalAlignment="Left" Margin="587,890,0,0" VerticalAlignment="Top" Width="102" Height="23" Click="scaleVector_Click"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="66,774,468,52" >
-            <StackPanel Orientation="Vertical" Margin="0,0,-25,24">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X1:" Width="50" HorizontalAlignment="Left"/>
-                    <TextBox Name="txtX1" Width="180" Text="{Binding Path=SelectedX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Y1:" Width="50" HorizontalAlignment="Left"/>
-                    <TextBox Name="txtY1" Width="180" Text="{Binding Path=SelectedY1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="DeltaX:" Width="50" HorizontalAlignment="Left"/>
-                    <TextBox Name="DeltaX" Width="180" Text="{Binding Path=SelectedDeltaX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="DeltaY:" Width="50" HorizontalAlignment="Left"/>
-                    <TextBox Name="DeltaY" Width="180" Text="{Binding Path=SelectedDeltaY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                </StackPanel>
-            </StackPanel>
+        <Label x:Name="label" Content="Selected vector" HorizontalAlignment="Left" Margin="61,771,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelScale"  HorizontalAlignment="Left" Content="ScaleX" Margin="61,803,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtScaleX" HorizontalAlignment="Left" Height="23" Margin="160,806,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="scaleVector" Content="Scale Vector" HorizontalAlignment="Left" Margin="61,865,0,0" VerticalAlignment="Top" Width="102" Height="23" Click="scaleVector_Click"/>
 
-        </Border>
         <Label x:Name="labelXLine" HorizontalAlignment="Left" Margin="96,743,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelXLine2" HorizontalAlignment="Left" Margin="540,743,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="0" HorizontalAlignment="Left" Margin="10,743,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
         <Label x:Name="labelYLine" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
-        <Button x:Name="DeleteAllVectors" Content="Delete all Vectors" HorizontalAlignment="Left" Margin="480,890,0,0" VerticalAlignment="Top" Width="102" Height="23" Click="DeleteAllVectors_Click"/>
-        <Label x:Name="labelScale_Copy"  HorizontalAlignment="Left" Content="ScaleY" Margin="373,826,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtScaleY" HorizontalAlignment="Left" Height="23" Margin="472,829,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="695,862,0,0" VerticalAlignment="Top" Width="140" Height="23" Click="AddVector_Click" />
-        <Button x:Name="DistractVector" Content="Distract selected Vectors" HorizontalAlignment="Left" Margin="694,890,0,0" VerticalAlignment="Top" Width="141" Height="23" Click="DistractVector_Click"/>
-        <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="10,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,203,680" >
+        <Label x:Name="labelScale_Copy"  HorizontalAlignment="Left" Content="ScaleY" Margin="61,826,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtScaleY" HorizontalAlignment="Left" Height="23" Margin="160,829,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="168,865,0,0" VerticalAlignment="Top" Width="149" Height="23" Click="AddVector_Click" />
+        <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="0,826,0,0" VerticalAlignment="Top"/>
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,151,650" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X1:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX1" Width="55"></TextBox>
-                    <Label Content="Y1:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixY1" Width="55"></TextBox>
-                    <Label Content="Left up"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X2:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX2" Width="55"></TextBox>
-                    <Label Content="Y2:"></Label>
-                    <TextBox Text="{Binding SelectedMatrix.xPos}" x:Name="matrixY2" Width="55"/>
-                    <Label Content="Right up"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X3:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX3" Width="55"></TextBox>
-                    <Label Content="Y3:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixY3" Width="55"></TextBox>
-                    <Label Content="Left down"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="X4:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixX4" Width="55"></TextBox>
-                    <Label Content="Y4:"></Label>
-                    <TextBox Text="{Binding Path=SelectedMatrix.xPos}" Name="matrixY4" Width="55"></TextBox>
-                    <Label Content="Right down"/>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal"/>
+                <StackPanel Orientation="Horizontal"/>
+                <StackPanel Orientation="Horizontal"/>
+                <StackPanel Orientation="Horizontal"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Scale X:"></Label>
                     <TextBox Name="ScaleMatrixX" Width="180"></TextBox>
@@ -113,13 +63,27 @@
                     <Label Content="Translate Y:"></Label>
                     <TextBox Name="TranslateMatrixY" Width="160"></TextBox>
                 </StackPanel>
-
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Rotate:       "></Label>
+                    <TextBox Name="RotateText" Width="160"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Rotate X point:       "></Label>
+                    <TextBox Name="RotateSpecificX" Width="120"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Rotate Y Point:       "></Label>
+                    <TextBox Name="RotateSpecificY" Width="121"></TextBox>
+                </StackPanel>
             </StackPanel>
         </Border>
         <Label x:Name="label2_Copy" Content="Matrix" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="CreateMatrixes" Content="Create Matrix" HorizontalAlignment="Left" Margin="872,240,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.49,-0.15" Click="CreateMatrixes_Click"/>
-        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="960,240,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
-        <Button x:Name="TranslateMatrix" Content="Translate selected Matrix" HorizontalAlignment="Left" Margin="872,265,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="TranslateMatrix_Click"/>
+        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="872,225,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
+        <Button x:Name="RotateMatrix" Content="Rotate selected Matrix" HorizontalAlignment="Left" Margin="872,250,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateMatrix_Click"/>
+        <Button x:Name="RotateSpecificPoint" Content="Rotate selected Matrix on specific point" HorizontalAlignment="Left" Margin="872,275,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateSpecificPoint_Click"/>
+        <Button x:Name="TranslateMatrix" Content="Translate selected Matrix" HorizontalAlignment="Left" Margin="1026,225,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="TranslateMatrix_Click"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="122" Margin="52,771,0,0" VerticalAlignment="Top" Width="276"/>
+        <Button x:Name="Animate" Content="Animate" HorizontalAlignment="Left" Margin="872,300,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="Animate_Click"/>
 
     </Grid>
 </Window>
