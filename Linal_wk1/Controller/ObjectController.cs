@@ -16,6 +16,8 @@ namespace Linal_wk1
         private List<Matrix> matrixList;
         private MainWindow _main;
         private Timer _timer;
+        public double AnimateX, AnimateY, degrees;
+        public Matrix SelectedMatrix;
 
         public ObjectController(MainWindow _main)
         {
@@ -43,28 +45,25 @@ namespace Linal_wk1
                 {1,1,1,1}
             }));
 
-            //matrixList.Add(new Matrix(new double[,]
-            //{
-            //    {1,1,2,2},
-            //    {2,1,1,2},
-            //    {1,1,1,1}
-            //}));
+            matrixList.Add(new Matrix(new double[,]
+            {
+                {1,1,2,2},
+                {2,1,1,2},
+                {1,1,1,1}
+            }));
         }
 
         private void Animate(object sender, EventArgs e)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                foreach (var matrix in matrixList)
-                {
-                    RotateSpecificPoint(matrix, 10, 11, 1);
-                }
+                RotateSpecificPoint(SelectedMatrix, degrees, AnimateX, AnimateY);
             });
         }
 
         public void ADDVector(Vector v1, Vector v2)
         {
-            Vector.ADD(v1, v2);
+            vectorList.Add(Vector.ADD(v1, v2));
             Draw();
         }
 
@@ -98,11 +97,9 @@ namespace Linal_wk1
         {
             Matrix translateMatrix = Matrix.createIdentityMatrix(xPoint * -1, yPoint * -1);
             m.Translate(translateMatrix);
-
-            //rotate
+            
             m.Rotate(degrees);
 
-            //translate back
             translateMatrix = Matrix.createIdentityMatrix(xPoint, yPoint);
             m.Translate(translateMatrix);
 

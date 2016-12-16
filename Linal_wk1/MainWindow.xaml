@@ -41,7 +41,7 @@
         <TextBox x:Name="txtScaleY" HorizontalAlignment="Left" Height="23" Margin="160,829,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="168,865,0,0" VerticalAlignment="Top" Width="149" Height="23" Click="AddVector_Click" />
         <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="0,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,151,650" >
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,151,626" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal"/>
                 <StackPanel Orientation="Horizontal"/>
@@ -84,6 +84,7 @@
         <Button x:Name="TranslateMatrix" Content="Translate selected Matrix" HorizontalAlignment="Left" Margin="1026,225,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="TranslateMatrix_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="122" Margin="52,771,0,0" VerticalAlignment="Top" Width="276"/>
         <Button x:Name="Animate" Content="Animate" HorizontalAlignment="Left" Margin="872,300,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="Animate_Click"/>
+        <Button x:Name="StopAnimate" Content="Stop animating" HorizontalAlignment="Left" Margin="872,325,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimate_Click" />
 
     </Grid>
 </Window>

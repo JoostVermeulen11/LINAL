@@ -179,7 +179,21 @@ namespace Linal_wk1
 
         private void Animate_Click(object sender, RoutedEventArgs e)
         {
+            _controller.AnimateX = double.Parse(RotateSpecificX.Text);
+            _controller.AnimateY = double.Parse(RotateSpecificY.Text);
+            _controller.degrees = double.Parse(RotateText.Text);
+            _controller.SelectedMatrix = SelectedMatrix;
             _controller.getTimer().Start();
+
+            SelectedMatrix = null;
+        }
+
+        private void StopAnimate_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.getTimer().Stop();
+
+            _controller.SelectedMatrix = null;
+            SelectedMatrix.getLine().Opacity = 1;
         }
     }
 }
