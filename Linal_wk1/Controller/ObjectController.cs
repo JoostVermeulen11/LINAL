@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Linal_wk1.Model;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -50,6 +50,8 @@ namespace Linal_wk1
                 {2,1,1,2},
                 {1,1,1,1}
             }));
+
+            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(1,2,3,1), new Vector(1,2,3,1), new Vector(0,1,0,1));
         }
 
         private void Animate(object sender, EventArgs e)

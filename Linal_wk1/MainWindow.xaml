@@ -77,7 +77,7 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Label x:Name="label2_Copy" Content="Matrix" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2_Copy" Content="Matrix 2D" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
         <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="872,225,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
         <Button x:Name="RotateMatrix" Content="Rotate selected Matrix" HorizontalAlignment="Left" Margin="872,250,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateMatrix_Click"/>
         <Button x:Name="RotateSpecificPoint" Content="Rotate selected Matrix on specific point" HorizontalAlignment="Left" Margin="872,275,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateSpecificPoint_Click"/>
@@ -86,6 +86,7 @@
         <Button x:Name="Animate" Content="Animate" HorizontalAlignment="Left" Margin="872,300,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="Animate_Click"/>
         <Button x:Name="StopAnimate" Content="Stop animating" HorizontalAlignment="Left" Margin="872,325,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimate_Click" />
         <Button x:Name="StopAnimateAll" Content="Stop animating everything" HorizontalAlignment="Left" Margin="872,350,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimateAll_Click"/>
+        <Label x:Name="label2_Copy1" Content="Matrix 3D" HorizontalAlignment="Left" Margin="872,399,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

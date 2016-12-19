@@ -35,8 +35,11 @@ namespace Linal_wk1
             _vector.X2 = ((x + deltaX) * blokSize);
             _vector.Y1 = (y * blokSize);
             _vector.Y2 = ((y + deltaY) * blokSize);
-            
-            Length = Math.Sqrt(Math.Pow(x + deltaX - x, 2) + Math.Pow(y + deltaY - y, 2)); //stelling van pythagoras            
+         }
+
+        public Vector(double x, double y, double z)
+        {
+
         }
 
         public ArrowLine getVector()
