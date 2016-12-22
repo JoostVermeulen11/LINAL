@@ -13,7 +13,8 @@ namespace Linal_wk1
     class ObjectController
     {
         private List<Vector> vectorList;
-        private List<Matrix2D> matrixList;
+        private List<Matrix2D> matrix2DList;
+        private List<Matrix3D> matrix3DList;
         private MainWindow _main;
         private Timer _timer; 
         public Matrix2D SelectedMatrix;
@@ -22,7 +23,8 @@ namespace Linal_wk1
         {
             this._main = _main;
             vectorList = new List<Vector>();
-            matrixList = new List<Matrix2D>();
+            matrix2DList = new List<Matrix2D>();
+            matrix3DList = new List<Matrix3D>();
             createObjects();
 
             _timer = new Timer();
@@ -37,28 +39,40 @@ namespace Linal_wk1
             vectorList.Add(new Vector(3, 3, 3, 1));
             vectorList.Add(new Vector(3, 3, 2, 2));
 
-            matrixList.Add(new Matrix2D(new double[,]
+            matrix2DList.Add(new Matrix2D(new double[,]
             {
                 {3,3,2,2},
                 {10,9,9,10},
                 {1,1,1,1}
             }));
 
-            matrixList.Add(new Matrix2D(new double[,]
+            //hierbij is vector eye 10,10,10,1 en lookAt is 0,0,0,1 en up is 0,1,0,1
+            matrix2DList.Add(new Matrix2D(new double[,]
             {
                 {1,1,2,2},
                 {2,1,1,2},
                 {1,1,1,1}
             }));
+            
+            matrix3DList.Add(new Matrix3D(new double[,]
+            {
+                {0,1,0,0,0,1,1,1},
+                {0,0,1,0,1,0,1,1},
+                {0,0,0,1,1,1,0,1},
+                {1,1,1,1,1,1,1,1}
+            }));
 
-            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(1,2,3,1), new Vector(1,2,3,1), new Vector(0,1,0,1));
+            //vragen wat far en near voor waardes moeten hebben. en vragen welke vectoren naberekend moeten worden. daarna de matrix nog tekenen
+            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(10,10,10), new Vector(0,0,0), new Vector(0,1,0));
+            Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(1/*geen idee*/, 1/*geen idee*/, 90);
+
         }
 
         private void Animate(object sender, EventArgs e)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                foreach (var matrix in matrixList)
+                foreach (var matrix in matrix2DList)
                 {
                     if(matrix.animate)
                         RotateSpecificPoint(matrix, matrix.Degrees, matrix.X, matrix.Y);
@@ -119,7 +133,7 @@ namespace Linal_wk1
             {
                 _main.Assenstelsel.Children.Add(vector.getVector());
             }
-            foreach (var matrix in matrixList)
+            foreach (var matrix in matrix2DList)
             {
                 matrix.drawMatrix();
                 _main.Assenstelsel.Children.Add(matrix.getLine());
@@ -138,7 +152,7 @@ namespace Linal_wk1
 
         public List<Matrix2D> getMatrixes()
         {
-            return matrixList;
+            return matrix2DList;
         }
     }
 }

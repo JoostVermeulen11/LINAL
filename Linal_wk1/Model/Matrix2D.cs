@@ -14,7 +14,7 @@ namespace Linal_wk1
     {
         //TODO scale and rotate origin from matrices
         private static int blockSize = 50;
-        private Polyline _line;
+        private Polygon _surface;
         private PointCollection _collection;
         private Point[] points;
         public double Degrees, X, Y;
@@ -41,11 +41,12 @@ namespace Linal_wk1
         {
             matrix = arr;
             
-            _line = new Polyline();
+            _surface = new Polygon();
             _collection = new PointCollection();
-            points = new Point[4];             
-            _line.Stroke = RandomColor.GetRandomBrush();
-            _line.StrokeThickness = 10;
+            points = new Point[4];
+            _surface.Stroke = Brushes.Black;   
+            _surface.Fill = RandomColor.GetRandomBrush();
+            _surface.StrokeThickness = 3;
         }
 
         public void Rotate(double degrees)
@@ -166,7 +167,7 @@ namespace Linal_wk1
                                   
             // add last point once again to make the square complete
             _collection.Add(points[0]);     
-            _line.Points = _collection;
+            _surface.Points = _collection;
         }
 
         public double ConvertToRadians(double angle)
@@ -176,12 +177,12 @@ namespace Linal_wk1
 
         public Brush getColor()
         {
-            return _line.Stroke;
+            return _surface.Stroke;
         }
 
-        public Polyline getLine()
+        public Polygon getLine()
         {
-            return _line;
+            return _surface;
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Linal_wk1
         public double yPos { get; set; }
         public double deltaX { get; set; }
         public double deltaY { get; set; }
+        public double deltaZ { get; set; }
+        public double deltaW { get; set; }
 
         public double Length { get; set; }
         private static int blokSize = 50;
@@ -39,7 +41,10 @@ namespace Linal_wk1
 
         public Vector(double x, double y, double z)
         {
-
+            this.deltaX = x;
+            this.deltaY = y;
+            this.deltaZ = z;
+            this.deltaW = 1;
         }
 
         public ArrowLine getVector()
@@ -78,8 +83,47 @@ namespace Linal_wk1
 
             double deltaX = vector1.deltaX + vector2.deltaX;
             double deltaY = vector1.deltaY + vector2.deltaY;
+            double deltaZ = vector1.deltaZ + vector2.deltaZ;
 
             return new Vector(x, y, deltaX, deltaY);
+        }
+
+        public static Vector SUBTRACT(Vector vector1, Vector vector2)
+        {
+            double deltaX = vector1.deltaX - vector2.deltaX;
+            double deltaY = vector1.deltaY - vector2.deltaY;
+            double deltaZ = vector1.deltaZ - vector2.deltaZ;
+            
+            return new Vector(deltaX, deltaY, deltaZ);
+        }
+
+        public void normalize()
+        {
+            double normalize = Math.Sqrt((deltaX * deltaX) + (deltaY * deltaY) + (deltaZ * deltaZ));
+
+            deltaX = deltaX / normalize;
+            deltaY = deltaY / normalize;
+            deltaZ = deltaZ / normalize;
+        }
+
+        // volgorde voor het uitrekenen
+        // 1.   V1y*V2z - V2y*V1z     
+        // 2.   V2x*V1z - V1x*V2z 
+        // 3.   V1x*V2y - V2x*V1y  
+        public static Vector CrossProduct(Vector v1, Vector v2)
+        {
+            double newX = (v1.deltaY * v2.deltaZ) - (v2.deltaY * v1.deltaZ);
+            double newY = (v2.deltaX * v1.deltaZ) - (v1.deltaX * v2.deltaZ);
+            double newZ = (v1.deltaX * v2.deltaY) - (v2.deltaX * v1.deltaY);
+
+            return new Vector(newX, newY, newZ);
+        }
+
+        // volgorde voor het uitrekenen
+        //  V1x*V2x + V1y*V2Y + V1z*V2z
+        public static double InProduct(Vector v1, Vector v2)
+        {            
+            return (v1.deltaX * v2.deltaX) + (v1.deltaY * v2.deltaY) + (v1.deltaZ * v2.deltaZ);
         }
     }
 }
