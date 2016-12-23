@@ -166,7 +166,7 @@ namespace Linal_wk1
             }
                                   
             // add last point once again to make the square complete
-            _collection.Add(points[0]);     
+            //_collection.Add(points[0]);     
             _surface.Points = _collection;
         }
 

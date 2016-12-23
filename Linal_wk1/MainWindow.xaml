@@ -9,7 +9,7 @@
         Title="MainWindow" Height="960" Width="1200">
     <Grid Margin="0,0,-129,-51">
         <Canvas  Name="Assenstelsel" HorizontalAlignment="Center" VerticalAlignment="Center"
-          Width="800" Height="700" MouseLeftButtonDown="Assenstelsel_MouseLeftButtonDown" Margin="59,42,462,238">
+          Width="700" Height="700" MouseLeftButtonDown="Assenstelsel_MouseLeftButtonDown" Margin="54,42,567,238">
             <Canvas.LayoutTransform>
                 <ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
             </Canvas.LayoutTransform>
@@ -35,13 +35,13 @@
 
         <Label x:Name="labelXLine" HorizontalAlignment="Left" Margin="96,743,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelXLine2" HorizontalAlignment="Left" Margin="540,743,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="0" HorizontalAlignment="Left" Margin="10,743,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
+        <Label x:Name="label1" Content="0" HorizontalAlignment="Left" Margin="34,745,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
         <Label x:Name="labelYLine" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.688,0.346"/>
         <Label x:Name="labelScale_Copy"  HorizontalAlignment="Left" Content="ScaleY" Margin="61,826,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtScaleY" HorizontalAlignment="Left" Height="23" Margin="160,829,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="168,865,0,0" VerticalAlignment="Top" Width="149" Height="23" Click="AddVector_Click" />
         <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="0,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="866,33,151,597" >
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="816,33,201,597" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal"/>
                 <StackPanel Orientation="Horizontal"/>
@@ -77,16 +77,16 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Label x:Name="label2_Copy" Content="Matrix 2D" HorizontalAlignment="Left" Margin="872,2,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="872,225,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
-        <Button x:Name="RotateMatrix" Content="Rotate selected Matrix" HorizontalAlignment="Left" Margin="872,250,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateMatrix_Click"/>
-        <Button x:Name="RotateSpecificPoint" Content="Rotate selected Matrix on specific point" HorizontalAlignment="Left" Margin="872,275,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateSpecificPoint_Click"/>
-        <Button x:Name="TranslateMatrix" Content="Translate selected Matrix" HorizontalAlignment="Left" Margin="1026,225,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="TranslateMatrix_Click"/>
+        <Label x:Name="label2_Copy" Content="Matrix 2D" HorizontalAlignment="Left" Margin="822,2,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="822,225,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />
+        <Button x:Name="RotateMatrix" Content="Rotate selected Matrix" HorizontalAlignment="Left" Margin="822,250,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateMatrix_Click"/>
+        <Button x:Name="RotateSpecificPoint" Content="Rotate selected Matrix on specific point" HorizontalAlignment="Left" Margin="822,275,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="RotateSpecificPoint_Click"/>
+        <Button x:Name="TranslateMatrix" Content="Translate selected Matrix" HorizontalAlignment="Left" Margin="976,225,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.49,-0.15" Click="TranslateMatrix_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="122" Margin="52,771,0,0" VerticalAlignment="Top" Width="276"/>
-        <Button x:Name="Animate" Content="Animate" HorizontalAlignment="Left" Margin="872,300,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="Animate_Click"/>
-        <Button x:Name="StopAnimate" Content="Stop animating" HorizontalAlignment="Left" Margin="872,325,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimate_Click" />
-        <Button x:Name="StopAnimateAll" Content="Stop animating everything" HorizontalAlignment="Left" Margin="872,350,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimateAll_Click"/>
-        <Label x:Name="label2_Copy1" Content="Matrix 3D" HorizontalAlignment="Left" Margin="872,399,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Animate" Content="Animate" HorizontalAlignment="Left" Margin="822,300,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="Animate_Click"/>
+        <Button x:Name="StopAnimate" Content="Stop animating" HorizontalAlignment="Left" Margin="822,325,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimate_Click" />
+        <Button x:Name="StopAnimateAll" Content="Stop animating everything" HorizontalAlignment="Left" Margin="822,350,0,0" VerticalAlignment="Top" Width="289" RenderTransformOrigin="0.49,-0.15" Click="StopAnimateAll_Click"/>
+        <Label x:Name="label2_Copy1" Content="Matrix 3D" HorizontalAlignment="Left" Margin="822,399,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

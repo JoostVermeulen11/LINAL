@@ -76,22 +76,7 @@ namespace Linal_wk1
             DataContext = this;
 
             _controller = new ObjectController(this);
-            AddVector.IsEnabled = false;
-
-            for (int i = 1; i <= 9; i++)
-            { 
-                labelXLine.Content += i.ToString() + "             ";
-            }
-
-            for (int i = 10; i <= 16; i++)
-            {
-                labelXLine2.Content += i.ToString() + "           ";
-            }
-
-            for (int i = 14; i > 0; i--)
-            {
-                labelYLine.Content += i.ToString() + "\n\n\n";
-            }
+            AddVector.IsEnabled = false;                       
         }
 
         private void AddVector_Click(object sender, RoutedEventArgs e)

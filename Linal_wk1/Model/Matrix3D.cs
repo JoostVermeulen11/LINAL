@@ -3,11 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
+using System.Windows.Shapes;
 
 namespace Linal_wk1.Model
 {
     class Matrix3D
     {
+        private Polygon _surface;
+        private Point3DCollection _collection;
+        private Point3D[] points;
+
+        public static Matrix3D operator *(Matrix3D leftMatrix, Matrix3D rightMatrix)
+        {
+            return leftMatrix.Multiply(rightMatrix);
+        }
+
         public double[,] matrix { get; set; }
 
         public int width
@@ -29,12 +42,59 @@ namespace Linal_wk1.Model
         public Matrix3D(double[,] arr)
         {
             matrix = arr;
+
+            _surface = new Polygon();
+            _collection = new Point3DCollection();
+            points = new Point3D[8];
+            _surface.Stroke = Brushes.Black;
+            _surface.Fill = RandomColor.GetRandomBrush();
+            _surface.StrokeThickness = 3;
         }
 
         public Matrix3D()
         {
 
         }
+
+        public Matrix3D Multiply(Matrix3D m1)
+        {
+            if (width != m1.height)
+            {
+                return null;
+            }
+
+            double[,] ma1 = matrix;
+            double[,] ma2 = m1.matrix;
+
+            double[,] result = new double[height, m1.width];
+
+            for (int i = 0; i < result.GetLength(0);/*height*/ i++)
+            {
+                for (int j = 0; j < result.GetLength(1);/*width*/ j++)
+                {
+                    for (int k = 0; k < width; k++)
+                    {
+                        //result[i, j] = ma1[i, 2] + ma2[i, j];
+                        result[i, j] += ma1[i, k] * ma2[k, j];
+                    }
+                }
+            }
+            return new Matrix3D(result);
+        }    
+        
+        public Matrix3D naberekening(double screenWidth, double screenHeight)
+        {
+            // first width, then height of canvas: both 700
+
+            for (int i = 0; i < width; i++)
+            {
+                matrix[0, i] = (screenWidth / 2) + ((matrix[0, i] + 1) / matrix[3, i]) * screenHeight * 0.5;
+                matrix[1, i] = (screenWidth / 2) + ((matrix[1, i] + 1) / matrix[3, i]) * screenHeight * 0.5; 
+                matrix[2, i] = (screenWidth / 2) + ((matrix[2, i] + 1) / matrix[3, i]) * screenHeight * 0.5; 
+            }
+
+            return new Matrix3D(matrix);
+        }       
 
         public static Matrix3D CameraMatrix(Vector vectorEye, Vector lookAt, Vector up)
         {
@@ -62,6 +122,23 @@ namespace Linal_wk1.Model
             });
         }
 
+        public void drawMatrix()
+        {
+            for (int i = 0; i < width; i++)
+            {
+                points[i] = new Point3D() { X = matrix[0, i], Y = matrix[1, i], Z = matrix[2, i] };
+            }
+
+            _collection.Clear();
+
+            foreach (Point3D p in points)
+            {
+                _collection.Add(p);
+            }
+
+            //_surface = _collection;
+        }
+
         public static Matrix3D PerspectiveProjectionMatrix(double near, double far, double fieldOfView)
         {
             //Gebruik de volgende formule: 𝑠𝑐𝑎𝑙𝑒 = 𝑛𝑒𝑎𝑟 ∗ tan(𝛼 ∗ 0.5)
@@ -80,9 +157,19 @@ namespace Linal_wk1.Model
             });
         }
 
-        public static double ConvertToRadians(double angle)
+        private static double ConvertToRadians(double angle)
         {
             return (Math.PI / 180) * angle;
+        }
+
+        public Brush getColor()
+        {
+            return _surface.Stroke;
+        }
+
+        public Polygon getPolygon()
+        {
+            return _surface;
         }
     }
 }

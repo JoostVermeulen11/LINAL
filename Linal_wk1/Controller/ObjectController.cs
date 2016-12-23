@@ -53,19 +53,31 @@ namespace Linal_wk1
                 {2,1,1,2},
                 {1,1,1,1}
             }));
-            
+
             matrix3DList.Add(new Matrix3D(new double[,]
             {
-                {0,1,0,0,0,1,1,1},
-                {0,0,1,0,1,0,1,1},
-                {0,0,0,1,1,1,0,1},
+                {0,50,0,0,0,50,50,50},
+                {0,0,50,0,50,0,50,50},
+                {0,0,0,50,50,50,0,50},
                 {1,1,1,1,1,1,1,1}
             }));
 
-            //vragen wat far en near voor waardes moeten hebben. en vragen welke vectoren naberekend moeten worden. daarna de matrix nog tekenen
-            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(10,10,10), new Vector(0,0,0), new Vector(0,1,0));
-            Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(1/*geen idee*/, 1/*geen idee*/, 90);
+            //matrix3DList.Add(new Matrix3D(new double[,]
+            //  {
+            //        {0,1,0,0,0,1,1,1},
+            //        {0,0,1,0,1,0,1,1},
+            //        {0,0,0,1,1,1,0,1},
+            //        {1,1,1,1,1,1,1,1}
+            //  }));
 
+            Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
+            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(150,150,150), new Vector(0,0,0), new Vector(0,1,0));
+
+            Matrix3D weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix3DList[0];
+            
+            //naberekening 
+            matrix3DList[0] = weergaveVectorenMatrix.naberekening(700, 700);
+            matrix3DList[0].drawMatrix();
         }
 
         private void Animate(object sender, EventArgs e)
@@ -76,7 +88,6 @@ namespace Linal_wk1
                 {
                     if(matrix.animate)
                         RotateSpecificPoint(matrix, matrix.Degrees, matrix.X, matrix.Y);
-
                 }
             });
         }

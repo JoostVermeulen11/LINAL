@@ -99,11 +99,11 @@ namespace Linal_wk1
 
         public void normalize()
         {
-            double normalize = Math.Sqrt((deltaX * deltaX) + (deltaY * deltaY) + (deltaZ * deltaZ));
+            double length = Math.Sqrt((deltaX * deltaX) + (deltaY * deltaY) + (deltaZ * deltaZ));
 
-            deltaX = deltaX / normalize;
-            deltaY = deltaY / normalize;
-            deltaZ = deltaZ / normalize;
+            deltaX = deltaX / length;
+            deltaY = deltaY / length;
+            deltaZ = deltaZ / length;
         }
 
         // volgorde voor het uitrekenen
