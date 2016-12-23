@@ -74,7 +74,6 @@ namespace Linal_wk1
         {
             InitializeComponent();
             DataContext = this;
-
             _controller = new ObjectController(this);
             AddVector.IsEnabled = false;                       
         }
@@ -100,7 +99,6 @@ namespace Linal_wk1
         private void TranslateMatrix_Click(object sender, RoutedEventArgs e)
         {
             _controller.TranslateMatrix(double.Parse(translateMatrixX.Text), double.Parse(TranslateMatrixY.Text), SelectedMatrix);
-
             SelectedMatrix.getLine().Opacity = 1;
             SelectedMatrix = null;
         }

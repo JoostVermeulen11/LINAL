@@ -14,7 +14,7 @@ namespace Linal_wk1
     {
         private List<Vector> vectorList;
         private List<Matrix2D> matrix2DList;
-        private List<Matrix3D> matrix3DList;
+        private List<Kubus> kubusList;
         private MainWindow _main;
         private Timer _timer; 
         public Matrix2D SelectedMatrix;
@@ -24,7 +24,7 @@ namespace Linal_wk1
             this._main = _main;
             vectorList = new List<Vector>();
             matrix2DList = new List<Matrix2D>();
-            matrix3DList = new List<Matrix3D>();
+            kubusList = new List<Kubus>();
             createObjects();
 
             _timer = new Timer();
@@ -46,38 +46,14 @@ namespace Linal_wk1
                 {1,1,1,1}
             }));
 
-            //hierbij is vector eye 10,10,10,1 en lookAt is 0,0,0,1 en up is 0,1,0,1
             matrix2DList.Add(new Matrix2D(new double[,]
             {
                 {1,1,2,2},
                 {2,1,1,2},
                 {1,1,1,1}
             }));
-
-            matrix3DList.Add(new Matrix3D(new double[,]
-            {
-                {0,50,0,0,0,50,50,50},
-                {0,0,50,0,50,0,50,50},
-                {0,0,0,50,50,50,0,50},
-                {1,1,1,1,1,1,1,1}
-            }));
-
-            //matrix3DList.Add(new Matrix3D(new double[,]
-            //  {
-            //        {0,1,0,0,0,1,1,1},
-            //        {0,0,1,0,1,0,1,1},
-            //        {0,0,0,1,1,1,0,1},
-            //        {1,1,1,1,1,1,1,1}
-            //  }));
-
-            Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
-            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(150,150,150), new Vector(0,0,0), new Vector(0,1,0));
-
-            Matrix3D weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix3DList[0];
             
-            //naberekening 
-            matrix3DList[0] = weergaveVectorenMatrix.naberekening(700, 700);
-            matrix3DList[0].drawMatrix();
+            kubusList.Add(new Kubus());         
         }
 
         private void Animate(object sender, EventArgs e)
@@ -148,6 +124,16 @@ namespace Linal_wk1
             {
                 matrix.drawMatrix();
                 _main.Assenstelsel.Children.Add(matrix.getLine());
+            }
+            foreach (var kubus in kubusList)
+            {
+                kubus.Draw();
+                foreach (var shape in kubus.getKubus())
+                {
+                    _main.Assenstelsel.Children.Add(shape);
+
+                }     
+                //_main.Assenstelsel.Children.Add();
             }
         }
 
