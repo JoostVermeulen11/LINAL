@@ -17,11 +17,16 @@ namespace Linal_wk1.Model
         public Matrix3D matrix;
         private Point3D[] points;
         public double VectorEye { get; set; }
+        public double LookAtY { get; set; }
+        public double LookAtX { get; set; }
 
 
         public Kubus()
         {
             VectorEye = 150;
+            LookAtY = 0;
+            LookAtX = 0;
+
             points = new Point3D[8];
             shapeList = new List<Polygon>();
 
@@ -41,7 +46,7 @@ namespace Linal_wk1.Model
             });
 
             Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
-            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(0, 0, 0), new Vector(0, 1, 0));
+            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(LookAtX, LookAtY, 0), new Vector(0, 1, 0));
 
             Matrix3D weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
 

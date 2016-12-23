@@ -156,6 +156,48 @@ namespace Linal_wk1
             Draw();
         }
 
+        public void LookatYUp()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.LookAtY--;
+                kubus.populate();
+            }
+            Draw();
+        }
+
+        public void LookatYDown()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.LookAtY++;
+                kubus.populate();
+            }
+            Draw();
+        }
+
+        public void LookatXRight()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.LookAtX++;
+                kubus.populate();
+            }
+            Draw();
+        }
+
+        public void LookatXLeft()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.LookAtX--;
+                kubus.populate();
+            }
+            Draw();
+        }
+
+
+
         public List<Vector> getVectors()
         {
             return vectorList;
