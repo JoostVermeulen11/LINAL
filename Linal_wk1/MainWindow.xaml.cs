@@ -202,5 +202,19 @@ namespace Linal_wk1
 
             _controller.getTimer().Stop();           
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            //Console.WriteLine("KEYYYYYYYYYYYYYYYYYYYYYYYYY"+e.Key.ToString());
+              
+            if (e.Key == Key.Subtract)
+            {
+                _controller.zoomOut();
+            }
+            if(e.Key == Key.Add)
+            {
+                _controller.zoomIn();
+            }
+        }
     }
 }

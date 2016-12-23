@@ -16,11 +16,21 @@ namespace Linal_wk1.Model
         private List<Polygon> shapeList;
         public Matrix3D matrix;
         private Point3D[] points;
+        public double VectorEye { get; set; }
+
 
         public Kubus()
         {
+            VectorEye = 150;
             points = new Point3D[8];
             shapeList = new List<Polygon>();
+
+            populate();
+        }   
+        
+        public void populate()
+        {
+            shapeList.Clear();
 
             matrix = new Matrix3D(new double[,]
             {
@@ -31,14 +41,13 @@ namespace Linal_wk1.Model
             });
 
             Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
-            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(150, 150, 150), new Vector(0, 0, 0), new Vector(0, 1, 0));
+            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(0, 0, 0), new Vector(0, 1, 0));
 
             Matrix3D weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
 
             // Naberekening 
             matrix = weergaveVectorenMatrix.naberekening(700, 700);
-    
-        }     
+        }  
         
         public void Draw()
         {
@@ -52,7 +61,7 @@ namespace Linal_wk1.Model
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                Fill = RandomColor.GetRandomBrush(),
+                Fill = Brushes.Orange,
                 Points = new PointCollection(){
                     new Point(points[0].X, points[0].Y),
                     new Point(points[1].X, points[1].Y),
@@ -66,7 +75,7 @@ namespace Linal_wk1.Model
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                Fill = RandomColor.GetRandomBrush(),
+                Fill = Brushes.Brown,
                 Points = new PointCollection(){
                     new Point(points[0].X, points[0].Y),
                     new Point(points[1].X, points[1].Y),
@@ -80,7 +89,7 @@ namespace Linal_wk1.Model
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                Fill = RandomColor.GetRandomBrush(),
+                Fill = Brushes.Green,
                 Points = new PointCollection(){
                     new Point(points[3].X, points[3].Y),
                     new Point(points[0].X, points[0].Y),
@@ -94,7 +103,7 @@ namespace Linal_wk1.Model
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                Fill = RandomColor.GetRandomBrush(),
+                Fill = Brushes.Yellow,
                 Points = new PointCollection(){
                     new Point(points[3].X, points[3].Y),
                     new Point(points[5].X, points[5].Y),
@@ -108,7 +117,7 @@ namespace Linal_wk1.Model
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                Fill = RandomColor.GetRandomBrush(),
+                Fill = Brushes.Red,
                 Points = new PointCollection(){
                     new Point(points[2].X, points[2].Y),
                     new Point(points[6].X, points[6].Y),
@@ -122,7 +131,7 @@ namespace Linal_wk1.Model
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 3,
-                Fill = RandomColor.GetRandomBrush(),
+                Fill = Brushes.Blue,
                 Points = new PointCollection(){
                     new Point(points[5].X, points[5].Y),
                     new Point(points[1].X, points[1].Y),

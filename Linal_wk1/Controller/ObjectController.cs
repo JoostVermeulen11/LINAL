@@ -131,10 +131,29 @@ namespace Linal_wk1
                 foreach (var shape in kubus.getKubus())
                 {
                     _main.Assenstelsel.Children.Add(shape);
-
                 }     
                 //_main.Assenstelsel.Children.Add();
             }
+        }
+
+        public void zoomIn()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.VectorEye--;
+                kubus.populate();
+            }
+            Draw();
+        }
+
+        public void zoomOut()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.VectorEye++;
+                kubus.populate();
+            }
+            Draw();
         }
 
         public List<Vector> getVectors()
@@ -151,5 +170,7 @@ namespace Linal_wk1
         {
             return matrix2DList;
         }
+
+        
     }
 }
