@@ -109,7 +109,7 @@ namespace Linal_wk1.Model
         {
             //Gebruik de volgende formule: 𝑠𝑐𝑎𝑙𝑒 = 𝑛𝑒𝑎𝑟 ∗ tan(𝛼 ∗ 0.5)
             //Let op: a is hier in radialen, zet je graden dus eerst om!
-            double scale = near * Math.Tan(ConvertToRadians(fieldOfView) * 0.5);
+            double scale = near * Math.Tan(((Math.PI / 180) * fieldOfView) * 0.5);
 
             //waardes voor in de projectiematrix berekenen
             double value1 = (far * -1) / (far - near);
@@ -123,7 +123,24 @@ namespace Linal_wk1.Model
             });
         }
 
-        private static double ConvertToRadians(double angle)
+        public Matrix3D RotateX(double degrees)
+        {
+            degrees = ConvertToRadians(degrees);
+
+            double rotate1 = Math.Cos(degrees);
+            double rotate2 = Math.Sin(degrees);
+
+            Matrix3D rotateMatrix = new Matrix3D(new double[,]
+            {
+                {1,0,0,0},
+                {0,rotate1,rotate2*-1,0},
+                {0,rotate2,rotate1,0}               
+            });
+
+            return rotateMatrix * this;
+        }
+
+        private double ConvertToRadians(double angle)
         {
             return (Math.PI / 180) * angle;
         }

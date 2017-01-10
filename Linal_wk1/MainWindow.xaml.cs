@@ -223,6 +223,10 @@ namespace Linal_wk1
             {
                 _controller.LookatYDown();
             }
+            if(e.Key == Key.R)
+            {
+                _controller.RotateX();
+            }
             //if(e.Key == Key.Left)
             //{
             //    _controller.LookatXLeft();

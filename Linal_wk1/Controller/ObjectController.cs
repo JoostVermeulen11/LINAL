@@ -196,7 +196,14 @@ namespace Linal_wk1
             Draw();
         }
 
-
+        public void RotateX()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.RotateX();
+            }
+            Draw();
+        }
 
         public List<Vector> getVectors()
         {

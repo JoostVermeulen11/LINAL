@@ -16,6 +16,9 @@ namespace Linal_wk1.Model
         private List<Polygon> shapeList;
         public Matrix3D matrix;
         private Point3D[] points;
+        private Matrix3D perspectiveProjectionMatrix;
+        private Matrix3D cameraMatrix;
+        private Matrix3D weergaveVectorenMatrix;
         public double VectorEye { get; set; }
         public double LookAtY { get; set; }
         public double LookAtX { get; set; }
@@ -30,13 +33,6 @@ namespace Linal_wk1.Model
             points = new Point3D[8];
             shapeList = new List<Polygon>();
 
-            populate();
-        }   
-        
-        public void populate()
-        {
-            shapeList.Clear();
-
             matrix = new Matrix3D(new double[,]
             {
                 {0,50,0,0,0,50,50,50},
@@ -45,14 +41,26 @@ namespace Linal_wk1.Model
                 {1,1,1,1,1,1,1,1}
             });
 
-            Matrix3D perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
-            Matrix3D cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(LookAtX, LookAtY, 0), new Vector(0, 1, 0));
+            populate();
+        }   
+        
+        public void populate()
+        {
+            shapeList.Clear();
 
-            Matrix3D weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
+            perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
+            cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(LookAtX, LookAtY, 0), new Vector(0, 1, 0));
+
+            weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
 
             // Naberekening 
             matrix = weergaveVectorenMatrix.naberekening(700, 700);
         }  
+
+        public void RotateX()
+        {
+            matrix = matrix.RotateX(10);            
+        }
         
         public void Draw()
         {
