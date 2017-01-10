@@ -73,7 +73,8 @@ namespace Linal_wk1.Model
                 over = p1;
             }
 
-            Matrix rotation = MatrixFactory.Get3DRotationMatrix(angle, v, over);
+            //TODO: DIT OOK
+            Matrix rotation = matrix.Get3DRotationMatrix(angle, v, over);
 
             rotation.Multiply(this);
             _data = rotation.GetData();
