@@ -123,9 +123,9 @@ namespace Linal_wk1
                     AddVector.IsEnabled = true;
                 }
             }
-            else if (e.OriginalSource is Polyline)
+            else if (e.OriginalSource is Polygon)
             {
-                Polyline ClickedRectangle = (Polyline)e.OriginalSource;
+                Polygon ClickedRectangle = (Polygon)e.OriginalSource;
 
                 Matrix2D ClickedMatrix = _controller.getMatrixes().Where(i => i.getColor() == ClickedRectangle.Stroke).FirstOrDefault();
 

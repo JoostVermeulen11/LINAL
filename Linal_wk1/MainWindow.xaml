@@ -41,41 +41,43 @@
         <TextBox x:Name="txtScaleY" HorizontalAlignment="Left" Height="23" Margin="160,829,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="AddVector" Content="Add Selected Vectors" HorizontalAlignment="Left" Margin="168,865,0,0" VerticalAlignment="Top" Width="149" Height="23" Click="AddVector_Click" />
         <Label x:Name="label2" Content="Vectors" HorizontalAlignment="Left" Margin="0,826,0,0" VerticalAlignment="Top"/>
-        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="816,33,201,597" >
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
-                <StackPanel Orientation="Horizontal"/>
-                <StackPanel Orientation="Horizontal"/>
-                <StackPanel Orientation="Horizontal"/>
-                <StackPanel Orientation="Horizontal"/>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Scale X:"></Label>
-                    <TextBox Name="ScaleMatrixX" Width="180"></TextBox>
+        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" Margin="820,33,201,597" Padding="5,0,0,0" >
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="236" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Scale X:"></Label>
+                        <TextBox Name="ScaleMatrixX" Width="180"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Scale Y:"></Label>
+                        <TextBox Name="ScaleMatrixY" Width="180"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Translate X:"></Label>
+                        <TextBox Name="translateMatrixX" Width="160"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Translate Y:"></Label>
+                        <TextBox Name="TranslateMatrixY" Width="160"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Rotate:       "></Label>
+                        <TextBox Name="RotateText" Width="160"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Rotate X point:       "></Label>
+                        <TextBox Name="RotateSpecificX" Width="120"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Rotate Y Point:       "></Label>
+                        <TextBox Name="RotateSpecificY" Width="121"></TextBox>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Scale Y:"></Label>
-                    <TextBox Name="ScaleMatrixY" Width="180"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Translate X:"></Label>
-                    <TextBox Name="translateMatrixX" Width="160"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Translate Y:"></Label>
-                    <TextBox Name="TranslateMatrixY" Width="160"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Rotate:       "></Label>
-                    <TextBox Name="RotateText" Width="160"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Rotate X point:       "></Label>
-                    <TextBox Name="RotateSpecificX" Width="120"></TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Rotate Y Point:       "></Label>
-                    <TextBox Name="RotateSpecificY" Width="121"></TextBox>
-                </StackPanel>
-            </StackPanel>
+            </ScrollViewer>
         </Border>
         <Label x:Name="label2_Copy" Content="Matrix 2D" HorizontalAlignment="Left" Margin="822,2,0,0" VerticalAlignment="Top"/>
         <Button x:Name="ScaleMatrix" Content="Scale selected Matrix" HorizontalAlignment="Left" Margin="822,225,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.49,-0.15" Click="ScaleMatrix_Click" />

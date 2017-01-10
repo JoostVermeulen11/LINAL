@@ -133,7 +133,7 @@ namespace Linal_wk1.Model
             Matrix3D rotateMatrix = new Matrix3D(new double[,]
             {
                 {1,0,0,0},
-                {0,rotate1,rotate2*-1,0},
+                {0,rotate1,-rotate2,0},
                 {0,rotate2,rotate1,0}               
             });
 
