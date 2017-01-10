@@ -123,21 +123,106 @@ namespace Linal_wk1.Model
             });
         }
 
-        public Matrix3D RotateX(double degrees)
+        public Matrix3D RotateX(double degrees, bool inverse)
         {
             degrees = ConvertToRadians(degrees);
 
             double rotate1 = Math.Cos(degrees);
-            double rotate2 = Math.Sin(degrees);
+            double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
 
             Matrix3D rotateMatrix = new Matrix3D(new double[,]
             {
                 {1,0,0,0},
                 {0,rotate1,-rotate2,0},
-                {0,rotate2,rotate1,0}               
+                {0,rotate2,rotate1,0},
+                {0,0,0,1}               
             });
 
-            return rotateMatrix * this;
+            return rotateMatrix;
+        }
+        public Matrix3D RotateY(double degrees, bool inverse)
+        {
+            degrees = ConvertToRadians(degrees);
+
+            double rotate1 = Math.Cos(degrees);
+            double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
+
+            Matrix3D rotateMatrix = new Matrix3D(new double[,]
+            {
+                {rotate1, 0, -rotate2,0},  
+                {0,1,0,0},
+                {rotate2,0,rotate1, 0},
+                {0,0,0,1}
+            });
+
+            return rotateMatrix;
+        }
+
+        public Matrix3D RotateZ(double degrees, bool inverse)
+        {
+            degrees = ConvertToRadians(degrees);
+
+            double rotate1 = Math.Cos(degrees);
+            double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
+
+            Matrix3D rotateMatrix = new Matrix3D(new double[,]
+            {
+                {rotate1, -rotate2,0, 0},
+                {rotate2, rotate1, 0, 0},
+                {0,0,1,0},
+                {0,0,0,1}
+            });
+
+            return rotateMatrix;
+        }
+
+        public static Matrix Get3DRotationMatrix(float alpha, Vector rotationVector, Point translateOver = null)
+        {
+            // TODO: Identity matrix goed creëren.
+            // NOG EEN TODO: Werk deze fucking errors weg.
+            double [,]rotationMatrix = new double[4, 4];
+            rotationMatrix.MakeIdentityMatrix();
+
+            if (translateOver != null)
+            {
+                Matrix translation =
+                    GetTranslationMatrix(-translateOver.GetX(), -translateOver.GetY(), -translateOver.GetZ(), true);
+                translation.Multiply(rotationMatrix);
+                rotationMatrix = translation;
+            }
+
+            float t1 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.GetZ(), rotationVector.GetX(), Trigonometric.Tangent2);
+            var yRotation = MatrixFactory.Rotate3DYAxis(t1, true);
+            yRotation.Multiply(rotationMatrix);
+            rotationMatrix = yRotation;
+
+            float newX = (float)Math.Sqrt(rotationVector.GetX() * rotationVector.GetX() + rotationVector.GetZ() * rotationVector.GetZ());
+            float t2 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.GetY(), newX, Trigonometric.Tangent2);
+            var zRotation = MatrixFactory.Rotate3DZAxis(t2, true);
+            zRotation.Multiply(rotationMatrix);
+            rotationMatrix = zRotation;
+
+            Matrix rotate = MatrixFactory.Rotate3DXAxis(GonioFactory.DegreesToRadians(alpha), false);
+            rotate.Multiply(rotationMatrix);
+            rotationMatrix = rotate;
+
+            var reverseZRotation = MatrixFactory.Rotate3DZAxis(t2, false);
+            reverseZRotation.Multiply(rotationMatrix);
+            rotationMatrix = reverseZRotation;
+
+            var reverseYRotation = MatrixFactory.Rotate3DYAxis(t1, false);
+            reverseYRotation.Multiply(rotationMatrix);
+            rotationMatrix = reverseYRotation;
+
+            if (translateOver != null)
+            {
+                Matrix translation = GetTranslationMatrix(translateOver.GetX(), translateOver.GetY(), translateOver.GetZ(), true);
+                translation.Multiply(rotationMatrix);
+                rotationMatrix = translation;
+            }
+
+            return rotationMatrix;
+
         }
 
         private double ConvertToRadians(double angle)

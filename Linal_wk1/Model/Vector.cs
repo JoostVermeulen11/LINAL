@@ -14,6 +14,7 @@ namespace Linal_wk1
         private ArrowLine _vector;
         public double xPos { get; set; }
         public double yPos { get; set; }
+        public double zPos { get; set; }
         public double deltaX { get; set; }
         public double deltaY { get; set; }
         public double deltaZ { get; set; }
@@ -22,6 +23,15 @@ namespace Linal_wk1
         public double Length { get; set; }
         private static int blokSize = 50;
 
+        public Vector(double x, double y, double z, double deltaX, double deltaY, double deltaZ)
+        {
+            xPos = x;
+            yPos = y;
+            zPos = z;
+            this.deltaX = deltaX;
+            this.deltaY = deltaY;
+            this.deltaZ = deltaZ;
+        }
         public Vector(double x, double y, double deltaX, double deltaY)
         {            
             _vector = new ArrowLine();

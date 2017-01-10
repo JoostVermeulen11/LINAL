@@ -125,6 +125,7 @@ namespace Linal_wk1
                 matrix.drawMatrix();
                 _main.Assenstelsel.Children.Add(matrix.getLine());
             }
+ 
             foreach (var kubus in kubusList)
             {
                 kubus.Draw();
@@ -201,6 +202,22 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.RotateX();
+            }
+            Draw();
+        }
+        public void RotateY()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.RotateY();
+            }
+            Draw();
+        }
+        public void RotateZ()
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.RotateZ();
             }
             Draw();
         }

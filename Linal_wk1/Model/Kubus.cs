@@ -42,8 +42,8 @@ namespace Linal_wk1.Model
             });
 
             populate();
-        }   
-        
+        }
+
         public void populate()
         {
             shapeList.Clear();
@@ -55,18 +55,51 @@ namespace Linal_wk1.Model
 
             // Naberekening 
             matrix = weergaveVectorenMatrix.naberekening(700, 700);
-        }  
+        }
 
+        public void rotate3D(Point3D p1, Point3D p2)
+        {
+            Vector v = null;
+            Point3D? over = null;
+
+            if (p2 == null)
+            {
+                v = new Vector(0, 0, 0, p1.X, p1.Y, p1.Z);
+            }
+            else
+            {
+                // Yes this is ugly.
+                v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
+                over = p1;
+            }
+
+            Matrix rotation = MatrixFactory.Get3DRotationMatrix(angle, v, over);
+
+            rotation.Multiply(this);
+            _data = rotation.GetData();
+        }
         public void RotateX()
         {
-            matrix = matrix.RotateX(10);            
+            Matrix3D temp = matrix.RotateX(2, false);
+            matrix = temp * matrix;
         }
-        
+        public void RotateY()
+        {
+            Matrix3D temp = matrix.RotateY(0.5, false);
+            matrix = temp * matrix;
+        }
+        public void RotateZ()
+        {
+            Matrix3D temp = matrix.RotateZ(2, false);
+            matrix = temp * matrix;
+        }
+
         public void Draw()
         {
+            shapeList.Clear();
             for (int i = 0; i < matrix.width; i++)
             {
-                points[i] = new Point3D() { X = matrix.matrix[0, i], Y = matrix.matrix[1, i], Z = matrix.matrix[2,i] };
+                points[i] = new Point3D() { X = matrix.matrix[0, i], Y = matrix.matrix[1, i], Z = matrix.matrix[2, i] };
             }
 
             //shape 1: bottom
@@ -96,7 +129,7 @@ namespace Linal_wk1.Model
                     new Point(points[2].X, points[2].Y)
                 }
             });
-            
+
             //shape 3: left
             shapeList.Add(new Polygon()
             {
@@ -152,7 +185,7 @@ namespace Linal_wk1.Model
                     new Point(points[7].X, points[7].Y)
                 }
             });
-        }  
+        }
 
         public List<Polygon> getKubus()
         {

@@ -1,0 +1,47 @@
+public static Matrix Get3DRotationMatrix(float alpha, Vector rotationVector, Point translateOver = null)
+        {
+
+            Matrix rotationMatrix = new Matrix(4,4);
+            rotationMatrix.MakeIdentityMatrix();
+
+            if (translateOver != null)
+            {
+                Matrix translation =
+                    GetTranslationMatrix(-translateOver.GetX(), -translateOver.GetY(), -translateOver.GetZ(), true);
+                translation.Multiply(rotationMatrix);
+                rotationMatrix = translation;
+            }
+
+            float t1 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.GetZ(), rotationVector.GetX(), Trigonometric.Tangent2);
+            var yRotation = MatrixFactory.Rotate3DYAxis(t1, true);
+            yRotation.Multiply(rotationMatrix);
+            rotationMatrix = yRotation;
+
+            float newX = (float)Math.Sqrt(rotationVector.GetX() * rotationVector.GetX() + rotationVector.GetZ() * rotationVector.GetZ());
+            float t2 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.GetY(), newX, Trigonometric.Tangent2);
+            var zRotation = MatrixFactory.Rotate3DZAxis(t2, true);
+            zRotation.Multiply(rotationMatrix);
+            rotationMatrix = zRotation;
+
+            Matrix rotate = MatrixFactory.Rotate3DXAxis(GonioFactory.DegreesToRadians(alpha), false);
+            rotate.Multiply(rotationMatrix);
+            rotationMatrix = rotate;
+
+            var reverseZRotation = MatrixFactory.Rotate3DZAxis(t2, false);
+            reverseZRotation.Multiply(rotationMatrix);
+            rotationMatrix = reverseZRotation;
+
+            var reverseYRotation = MatrixFactory.Rotate3DYAxis(t1, false);
+            reverseYRotation.Multiply(rotationMatrix);
+            rotationMatrix = reverseYRotation;
+
+            if (translateOver != null)
+            {
+                Matrix translation = GetTranslationMatrix(translateOver.GetX(), translateOver.GetY(), translateOver.GetZ(), true);
+                translation.Multiply(rotationMatrix);
+                rotationMatrix = translation;
+            }
+
+            return rotationMatrix;
+
+        }
