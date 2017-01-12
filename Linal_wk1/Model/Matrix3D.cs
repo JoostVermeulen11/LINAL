@@ -206,8 +206,7 @@ namespace Linal_wk1.Model
 
             // Step 4
             Matrix3D rotate = RotateX(ConvertToRadians(degrees), false);
-            rotate.Multiply(rotationMatrix);
-            rotationMatrix = rotate;
+            rotationMatrix = rotationMatrix * rotate;
 
             // Step 5
             Matrix3D reverseZRotation = RotateZ(t2, false);
@@ -232,10 +231,10 @@ namespace Linal_wk1.Model
         public static Matrix3D createIdentityMatrix()
         {
             return new Matrix3D(new double[,] {
-                {1,1,1,1},
-                {1,1,1,1},
-                {1,1,1,1},
-                {1,1,1,1}    
+                {1,0,0,0},
+                {0,1,0,0},
+                {0,0,1,0},
+                {0,0,0,1}    
             });
         }
 

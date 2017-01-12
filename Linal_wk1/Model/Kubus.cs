@@ -62,7 +62,7 @@ namespace Linal_wk1.Model
             Vector v = new Vector(0, 0, 0, p1.X, p1.Y, p1.Z);
             Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
 
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(150, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(70, v, over);
 
             matrix = rotation * matrix;
         }
@@ -75,12 +75,11 @@ namespace Linal_wk1.Model
 
           
             // Yes this is ugly.
-            v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
             over = p1;
            
 
             //TODO: DIT OOK
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(10, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(0.1, v, over);
 
             matrix = rotation * matrix;
             //_data = rotation.GetData();

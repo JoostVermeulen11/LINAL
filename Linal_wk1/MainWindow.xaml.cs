@@ -239,8 +239,8 @@ namespace Linal_wk1
             if (e.Key == Key.D)
             {
                 Point3D p = new Point3D(){ X = 250, Y = 300, Z = 250 };
-                Point3D p1 = new Point3D() { X = 0, Y = 700, Z = 350 };
-                _controller.rotateOver(p);
+                Point3D p1 = new Point3D() { X = 100, Y = 700, Z = 350 };
+                _controller.rotateOver(p,p1);
             }
         }
     }
