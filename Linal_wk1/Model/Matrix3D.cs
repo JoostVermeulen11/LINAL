@@ -123,7 +123,7 @@ namespace Linal_wk1.Model
             });
         }
 
-        public Matrix3D RotateX(double degrees, bool inverse)
+        public static Matrix3D RotateX(double degrees, bool inverse)
         {
             degrees = ConvertToRadians(degrees);
 
@@ -140,7 +140,7 @@ namespace Linal_wk1.Model
 
             return rotateMatrix;
         }
-        public Matrix3D RotateY(double degrees, bool inverse)
+        public static Matrix3D RotateY(double degrees, bool inverse)
         {
             degrees = ConvertToRadians(degrees);
 
@@ -158,7 +158,7 @@ namespace Linal_wk1.Model
             return rotateMatrix;
         }
 
-        public Matrix3D RotateZ(double degrees, bool inverse)
+        public static Matrix3D RotateZ(double degrees, bool inverse)
         {
             degrees = ConvertToRadians(degrees);
 
@@ -176,56 +176,80 @@ namespace Linal_wk1.Model
             return rotateMatrix;
         }
 
-        public static Matrix Get3DRotationMatrix(float alpha, Vector rotationVector, Point translateOver = null)
+        public static Matrix3D Get3DRotationMatrix(double degrees, Vector rotationVector, Point3D translateOver)
         {
             // TODO: Identity matrix goed creëren.
             // NOG EEN TODO: Werk deze fucking errors weg.
-            double [,]rotationMatrix = new double[4, 4];
-            rotationMatrix.MakeIdentityMatrix();
+            Matrix3D rotationMatrix = Matrix3D.createIdentityMatrix();
 
+            // Step 1
             if (translateOver != null)
             {
-                Matrix translation =
-                    GetTranslationMatrix(-translateOver.GetX(), -translateOver.GetY(), -translateOver.GetZ(), true);
-                translation.Multiply(rotationMatrix);
-                rotationMatrix = translation;
+                Matrix3D translation =
+                    createTranslationMatrix(-translateOver.X, -translateOver.Y, -translateOver.Z);
+                rotationMatrix = rotationMatrix * translation;
             }
 
-            float t1 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.GetZ(), rotationVector.GetX(), Trigonometric.Tangent2);
-            var yRotation = MatrixFactory.Rotate3DYAxis(t1, true);
-            yRotation.Multiply(rotationMatrix);
-            rotationMatrix = yRotation;
+            // Step 2
+            double t1 = Math.Atan2(rotationVector.zPos, rotationVector.xPos);
+            //float t1 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.zPos, rotationVector.xPos, Trigonometric.Tangent2);
+            Matrix3D yRotation = RotateY(t1, true);
+            //yRotation.Multiply(rotationMatrix);
+            rotationMatrix = rotationMatrix * yRotation;
 
-            float newX = (float)Math.Sqrt(rotationVector.GetX() * rotationVector.GetX() + rotationVector.GetZ() * rotationVector.GetZ());
-            float t2 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.GetY(), newX, Trigonometric.Tangent2);
-            var zRotation = MatrixFactory.Rotate3DZAxis(t2, true);
-            zRotation.Multiply(rotationMatrix);
-            rotationMatrix = zRotation;
+            // Step 3
+            // Pythagoras to calculate the angle
+            double newX = Math.Sqrt(rotationVector.xPos * rotationVector.xPos + rotationVector.zPos * rotationVector.zPos);
+            double t2 = Math.Atan2(rotationVector.yPos, newX);
+            Matrix3D zRotation = RotateZ(t2, true);
+            rotationMatrix = rotationMatrix * zRotation;
 
-            Matrix rotate = MatrixFactory.Rotate3DXAxis(GonioFactory.DegreesToRadians(alpha), false);
+            // Step 4
+            Matrix3D rotate = RotateX(ConvertToRadians(degrees), false);
             rotate.Multiply(rotationMatrix);
             rotationMatrix = rotate;
 
-            var reverseZRotation = MatrixFactory.Rotate3DZAxis(t2, false);
-            reverseZRotation.Multiply(rotationMatrix);
-            rotationMatrix = reverseZRotation;
+            // Step 5
+            Matrix3D reverseZRotation = RotateZ(t2, false);
+            rotationMatrix = rotationMatrix * reverseZRotation;
 
-            var reverseYRotation = MatrixFactory.Rotate3DYAxis(t1, false);
-            reverseYRotation.Multiply(rotationMatrix);
-            rotationMatrix = reverseYRotation;
+            // Step 6
+            Matrix3D reverseYRotation = RotateY(t1, false);
+            rotationMatrix = rotationMatrix * reverseYRotation;
 
+            // Step 7
             if (translateOver != null)
             {
-                Matrix translation = GetTranslationMatrix(translateOver.GetX(), translateOver.GetY(), translateOver.GetZ(), true);
-                translation.Multiply(rotationMatrix);
-                rotationMatrix = translation;
+                Matrix3D translation = createTranslationMatrix(translateOver.X, translateOver.Y, translateOver.Z);                
+                rotationMatrix = rotationMatrix * translation;
             }
+            
 
+            // I sincerely hope we're done now.
             return rotationMatrix;
-
         }
 
-        private double ConvertToRadians(double angle)
+        public static Matrix3D createIdentityMatrix()
+        {
+            return new Matrix3D(new double[,] {
+                {1,1,1,1},
+                {1,1,1,1},
+                {1,1,1,1},
+                {1,1,1,1}    
+            });
+        }
+
+        public static Matrix3D createTranslationMatrix(double x, double y, double z)
+        {
+            return new Matrix3D(new double[,] {
+                {1,0,0,x},
+                {0,1,0,y},
+                {0,0,1,z},
+                {0,0,0,1}    
+            });
+        }
+
+        private static double ConvertToRadians(double angle)
         {
             return (Math.PI / 180) * angle;
         }

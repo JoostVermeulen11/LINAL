@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
+using System.Windows.Media.Media3D;
 
 namespace Linal_wk1
 {
@@ -193,6 +194,24 @@ namespace Linal_wk1
             {
                 kubus.LookAtX--;
                 kubus.populate();
+            }
+            Draw();
+        }
+
+        public void rotateOver(Point3D p1)
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.rotate3D(p1);
+            }
+            Draw();
+        }
+
+        public void rotateOver(Point3D p1, Point3D p2)
+        {
+            foreach (var kubus in kubusList)
+            {
+                kubus.rotate3D(p1, p2);
             }
             Draw();
         }

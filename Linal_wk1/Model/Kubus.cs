@@ -57,41 +57,47 @@ namespace Linal_wk1.Model
             matrix = weergaveVectorenMatrix.naberekening(700, 700);
         }
 
+        public void rotate3D(Point3D p1)
+        {
+            Vector v = new Vector(0, 0, 0, p1.X, p1.Y, p1.Z);
+            Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
+
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(150, v, over);
+
+            matrix = rotation * matrix;
+        }
+
         public void rotate3D(Point3D p1, Point3D p2)
         {
-            Vector v = null;
-            Point3D? over = null;
+            Vector v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
+            // Initialize empty point.
+            Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
 
-            if (p2 == null)
-            {
-                v = new Vector(0, 0, 0, p1.X, p1.Y, p1.Z);
-            }
-            else
-            {
-                // Yes this is ugly.
-                v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
-                over = p1;
-            }
+          
+            // Yes this is ugly.
+            v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
+            over = p1;
+           
 
             //TODO: DIT OOK
-            Matrix rotation = matrix.Get3DRotationMatrix(angle, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(10, v, over);
 
-            rotation.Multiply(this);
-            _data = rotation.GetData();
+            matrix = rotation * matrix;
+            //_data = rotation.GetData();
         }
         public void RotateX()
         {
-            Matrix3D temp = matrix.RotateX(2, false);
+            Matrix3D temp = Matrix3D.RotateX(2, false);
             matrix = temp * matrix;
         }
         public void RotateY()
         {
-            Matrix3D temp = matrix.RotateY(0.5, false);
+            Matrix3D temp = Matrix3D.RotateY(2, false);
             matrix = temp * matrix;
         }
         public void RotateZ()
         {
-            Matrix3D temp = matrix.RotateZ(2, false);
+            Matrix3D temp = Matrix3D.RotateZ(2, false);
             matrix = temp * matrix;
         }
 

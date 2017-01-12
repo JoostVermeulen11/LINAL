@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -234,6 +235,12 @@ namespace Linal_wk1
             if (e.Key == Key.Z)
             {
                 _controller.RotateZ();
+            }
+            if (e.Key == Key.D)
+            {
+                Point3D p = new Point3D(){ X = 250, Y = 300, Z = 250 };
+                Point3D p1 = new Point3D() { X = 0, Y = 700, Z = 350 };
+                _controller.rotateOver(p);
             }
         }
     }
