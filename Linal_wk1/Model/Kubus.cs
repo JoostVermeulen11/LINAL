@@ -33,6 +33,7 @@ namespace Linal_wk1.Model
             points = new Point3D[8];
             shapeList = new List<Polygon>();
 
+            //kubus matrix
             matrix = new Matrix3D(new double[,]
             {
                 {0,50,0,0,0,50,50,50},
@@ -44,8 +45,22 @@ namespace Linal_wk1.Model
             populate();
         }
 
+        private void newKubus()
+        {
+            //kubus matrix
+            matrix = new Matrix3D(new double[,]
+            {
+                {0,50,0,0,0,50,50,50},
+                {0,0,50,0,50,0,50,50},
+                {0,0,0,50,50,50,0,50},
+                {1,1,1,1,1,1,1,1}
+            });
+        }
+
         public void populate()
         {
+            newKubus();
+
             shapeList.Clear();
 
             perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);

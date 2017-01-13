@@ -133,8 +133,7 @@ namespace Linal_wk1
                 foreach (var shape in kubus.getKubus())
                 {
                     _main.Assenstelsel.Children.Add(shape);
-                }     
-                //_main.Assenstelsel.Children.Add();
+                }                
             }
         }
 
