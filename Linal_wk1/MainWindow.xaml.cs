@@ -236,7 +236,7 @@ namespace Linal_wk1
             {
                 _controller.RotateZ();
             }
-            if (e.Key == Key.D)
+            if (e.Key == Key.S)
             {
                 Point3D p = new Point3D(){ X = 250, Y = 300, Z = 250 };
                 Point3D p1 = new Point3D() { X = 100, Y = 700, Z = 350 };

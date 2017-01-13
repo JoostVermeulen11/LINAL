@@ -199,7 +199,7 @@ namespace Linal_wk1.Model
 
             // Step 3
             // Pythagoras to calculate the angle
-            double newX = Math.Sqrt(rotationVector.xPos * rotationVector.xPos + rotationVector.zPos * rotationVector.zPos);
+            double newX = Math.Sqrt(rotationVector.deltaX * rotationVector.deltaX + rotationVector.deltaZ * rotationVector.deltaZ);
             double t2 = Math.Atan2(rotationVector.yPos, newX);
             Matrix3D zRotation = RotateZ(t2, true);
             rotationMatrix = rotationMatrix * zRotation;
