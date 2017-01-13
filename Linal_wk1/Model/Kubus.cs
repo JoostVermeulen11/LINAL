@@ -36,11 +36,18 @@ namespace Linal_wk1.Model
             //kubus matrix
             matrix = new Matrix3D(new double[,]
             {
-                {0,50,0,0,0,50,50,50},
-                {0,0,50,0,50,0,50,50},
-                {0,0,0,50,50,50,0,50},
+                {0,1,0,0,0,1,1,1},
+                {0,0,1,0,1,0,1,1},
+                {0,0,0,1,1,1,0,1},
                 {1,1,1,1,1,1,1,1}
             });
+
+            //matrix = new Matrix3D(new double[,]{
+            //    {40},
+            //    {30},
+            //    {50},
+            //    {1}
+            //});
 
             populate();
         }
@@ -50,11 +57,24 @@ namespace Linal_wk1.Model
             //kubus matrix
             matrix = new Matrix3D(new double[,]
             {
-                {0,50,0,0,0,50,50,50},
-                {0,0,50,0,50,0,50,50},
-                {0,0,0,50,50,50,0,50},
+                {0,1,0,0,0,1,1,1},
+                {0,0,1,0,1,0,1,1},
+                {0,0,0,1,1,1,0,1},
                 {1,1,1,1,1,1,1,1}
             });
+
+            //matrix = new Matrix3D(new double[,]{
+            //    {40},
+            //    {30},
+            //    {50},
+            //    {1}
+            //});
+
+            //Matrix3D m1 = new Matrix3D(new double[,]{
+            //    {1,2,3,4}
+            //});
+
+            //matrix = matrix * m1;
         }
 
         public void populate()
@@ -77,7 +97,7 @@ namespace Linal_wk1.Model
             Vector v = new Vector(0, 0, 0, p1.X, p1.Y, p1.Z);
             Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
 
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(70, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(10, v, over);
 
             matrix = rotation * matrix;
         }
@@ -94,10 +114,9 @@ namespace Linal_wk1.Model
            
 
             //TODO: DIT OOK
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(0.1, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(5, v, over);
 
             matrix = rotation * matrix;
-            //_data = rotation.GetData();
         }
         public void RotateX()
         {

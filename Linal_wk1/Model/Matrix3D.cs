@@ -125,7 +125,7 @@ namespace Linal_wk1.Model
 
         public static Matrix3D RotateX(double degrees, bool inverse)
         {
-            degrees = ConvertToRadians(degrees);
+            //degrees = ConvertToRadians(degrees);
 
             double rotate1 = Math.Cos(degrees);
             double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
@@ -142,8 +142,6 @@ namespace Linal_wk1.Model
         }
         public static Matrix3D RotateY(double degrees, bool inverse)
         {
-            degrees = ConvertToRadians(degrees);
-
             double rotate1 = Math.Cos(degrees);
             double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
 
@@ -160,7 +158,7 @@ namespace Linal_wk1.Model
 
         public static Matrix3D RotateZ(double degrees, bool inverse)
         {
-            degrees = ConvertToRadians(degrees);
+            //degrees = ConvertToRadians(degrees);
 
             double rotate1 = Math.Cos(degrees);
             double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
@@ -179,7 +177,6 @@ namespace Linal_wk1.Model
         public static Matrix3D Get3DRotationMatrix(double degrees, Vector rotationVector, Point3D translateOver)
         {
             // TODO: Identity matrix goed creëren.
-            // NOG EEN TODO: Werk deze fucking errors weg.
             Matrix3D rotationMatrix = Matrix3D.createIdentityMatrix();
 
             // Step 1
@@ -191,8 +188,7 @@ namespace Linal_wk1.Model
             }
 
             // Step 2
-            double t1 = Math.Atan2(rotationVector.zPos, rotationVector.xPos);
-            //float t1 = GonioFactory.GetArcTrigonometricByRadians(rotationVector.zPos, rotationVector.xPos, Trigonometric.Tangent2);
+            double t1 = Math.Atan2(rotationVector.deltaZ, rotationVector.deltaX);
             Matrix3D yRotation = RotateY(t1, true);
             //yRotation.Multiply(rotationMatrix);
             rotationMatrix = rotationMatrix * yRotation;
@@ -200,7 +196,7 @@ namespace Linal_wk1.Model
             // Step 3
             // Pythagoras to calculate the angle
             double newX = Math.Sqrt(rotationVector.deltaX * rotationVector.deltaX + rotationVector.deltaZ * rotationVector.deltaZ);
-            double t2 = Math.Atan2(rotationVector.yPos, newX);
+            double t2 = Math.Atan2(rotationVector.deltaY, newX);
             Matrix3D zRotation = RotateZ(t2, true);
             rotationMatrix = rotationMatrix * zRotation;
 
@@ -219,7 +215,7 @@ namespace Linal_wk1.Model
             // Step 7
             if (translateOver != null)
             {
-                Matrix3D translation = createTranslationMatrix(translateOver.X, translateOver.Y, translateOver.Z);                
+                Matrix3D translation = createTranslationMatrix(translateOver.X, translateOver.Y, translateOver.Z);
                 rotationMatrix = rotationMatrix * translation;
             }
             
