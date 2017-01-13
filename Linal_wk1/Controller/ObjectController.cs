@@ -37,7 +37,7 @@ namespace Linal_wk1
 
         private void createObjects()
         {
-            vectorList.Add(new Vector(3, 3, 3, 1));
+            vectorList.Add(new Vector(0, 0, 1, 1));
             vectorList.Add(new Vector(3, 3, 2, 2));
 
             matrix2DList.Add(new Matrix2D(new double[,]
@@ -121,12 +121,11 @@ namespace Linal_wk1
             {
                 _main.Assenstelsel.Children.Add(vector.getVector());
             }
-            foreach (var matrix in matrix2DList)
-            {
-                matrix.drawMatrix();
-                _main.Assenstelsel.Children.Add(matrix.getLine());
-            }
- 
+            //foreach (var matrix in matrix2DList)
+            //{
+            //    matrix.drawMatrix();
+            //    _main.Assenstelsel.Children.Add(matrix.getLine());
+            //}
             foreach (var kubus in kubusList)
             {
                 kubus.Draw();

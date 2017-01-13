@@ -11,7 +11,7 @@
         <Canvas  Name="Assenstelsel" HorizontalAlignment="Center" VerticalAlignment="Center"
           Width="700" Height="700" MouseLeftButtonDown="Assenstelsel_MouseLeftButtonDown" Margin="54,42,567,238">
             <Canvas.LayoutTransform>
-                <ScaleTransform ScaleX="1" ScaleY="-1" CenterX=".5" CenterY=".5" />
+                <ScaleTransform ScaleX="1" ScaleY="-1" CenterX="0" CenterY="0" />
             </Canvas.LayoutTransform>
             <Canvas.Background>
                 <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" ViewportUnits="Absolute">

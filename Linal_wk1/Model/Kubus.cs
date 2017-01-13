@@ -36,18 +36,11 @@ namespace Linal_wk1.Model
             //kubus matrix
             matrix = new Matrix3D(new double[,]
             {
-                {0,1,0,0,0,1,1,1},
-                {0,0,1,0,1,0,1,1},
-                {0,0,0,1,1,1,0,1},
+                {0,25,0,0,0,25,25,25},
+                {0,0,25,0,25,0,25,25},
+                {0,0,0,25,25,25,0,25},
                 {1,1,1,1,1,1,1,1}
             });
-
-            //matrix = new Matrix3D(new double[,]{
-            //    {40},
-            //    {30},
-            //    {50},
-            //    {1}
-            //});
 
             populate();
         }
@@ -57,24 +50,11 @@ namespace Linal_wk1.Model
             //kubus matrix
             matrix = new Matrix3D(new double[,]
             {
-                {0,1,0,0,0,1,1,1},
-                {0,0,1,0,1,0,1,1},
-                {0,0,0,1,1,1,0,1},
+                {0,25,0,0,0,25,25,25},
+                {0,0,25,0,25,0,25,25},
+                {0,0,0,25,25,25,0,25},
                 {1,1,1,1,1,1,1,1}
             });
-
-            //matrix = new Matrix3D(new double[,]{
-            //    {40},
-            //    {30},
-            //    {50},
-            //    {1}
-            //});
-
-            //Matrix3D m1 = new Matrix3D(new double[,]{
-            //    {1,2,3,4}
-            //});
-
-            //matrix = matrix * m1;
         }
 
         public void populate()
@@ -107,13 +87,10 @@ namespace Linal_wk1.Model
             Vector v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
             // Initialize empty point.
             Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
-
-          
+                      
             // Yes this is ugly.
             over = p1;
            
-
-            //TODO: DIT OOK
             Matrix3D rotation = Matrix3D.Get3DRotationMatrix(5, v, over);
 
             matrix = rotation * matrix;
