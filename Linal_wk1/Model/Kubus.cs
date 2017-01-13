@@ -91,23 +91,23 @@ namespace Linal_wk1.Model
             // Yes this is ugly.
             over = p1;
            
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(5, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(1, v, over);
 
             matrix = rotation * matrix;
         }
         public void RotateX()
         {
-            Matrix3D temp = Matrix3D.RotateX(2, false);
+            Matrix3D temp = Matrix3D.RotateX(1, false, false);
             matrix = temp * matrix;
         }
         public void RotateY()
         {
-            Matrix3D temp = Matrix3D.RotateY(2, false);
+            Matrix3D temp = Matrix3D.RotateY(1, false, false);
             matrix = temp * matrix;
         }
         public void RotateZ()
         {
-            Matrix3D temp = Matrix3D.RotateZ(2, false);
+            Matrix3D temp = Matrix3D.RotateZ(1, false, false);
             matrix = temp * matrix;
         }
 

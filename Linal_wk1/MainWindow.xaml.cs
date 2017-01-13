@@ -242,7 +242,7 @@ namespace Linal_wk1
                 //Point3D p1 = new Point3D() { X = 200, Y = 200, Z = 200 };
                 //_controller.rotateOver(p,p1);
 
-                _controller.rotateOver(new Point3D { X = 15, Y = 0, Z = 0 }, new Point3D { X = 15, Y = 1, Z = 0 });
+                _controller.rotateOver(new Point3D { X = 1, Y = 0, Z = 0 }, new Point3D { X = 1, Y = 1, Z = 0 });
             }
         }
     }

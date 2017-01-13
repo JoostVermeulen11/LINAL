@@ -123,9 +123,10 @@ namespace Linal_wk1.Model
             });
         }
 
-        public static Matrix3D RotateX(double degrees, bool inverse)
+        public static Matrix3D RotateX(double degrees, bool inverse, bool convert)
         {
-            //degrees = ConvertToRadians(degrees);
+            if(!convert)
+                degrees = ConvertToRadians(degrees);
 
             double rotate1 = Math.Cos(degrees);
             double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
@@ -140,8 +141,11 @@ namespace Linal_wk1.Model
 
             return rotateMatrix;
         }
-        public static Matrix3D RotateY(double degrees, bool inverse)
+        public static Matrix3D RotateY(double degrees, bool inverse, bool convert)
         {
+            if(!convert)
+                degrees = ConvertToRadians(degrees);
+
             double rotate1 = Math.Cos(degrees);
             double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
 
@@ -156,9 +160,10 @@ namespace Linal_wk1.Model
             return rotateMatrix;
         }
 
-        public static Matrix3D RotateZ(double degrees, bool inverse)
+        public static Matrix3D RotateZ(double degrees, bool inverse, bool convert)
         {
-            //degrees = ConvertToRadians(degrees);
+            if(!convert)
+                degrees = ConvertToRadians(degrees);
 
             double rotate1 = Math.Cos(degrees);
             double rotate2 = inverse ? -Math.Sin(degrees) : Math.Sin(degrees);
@@ -189,7 +194,7 @@ namespace Linal_wk1.Model
 
             // Step 2
             double t1 = Math.Atan2(rotationVector.deltaZ, rotationVector.deltaX);
-            Matrix3D yRotation = RotateY(t1, true);
+            Matrix3D yRotation = RotateY(t1, true, true);
             //yRotation.Multiply(rotationMatrix);
             rotationMatrix = rotationMatrix * yRotation;
 
@@ -197,19 +202,19 @@ namespace Linal_wk1.Model
             // Pythagoras to calculate the angle
             double newX = Math.Sqrt(rotationVector.deltaX * rotationVector.deltaX + rotationVector.deltaZ * rotationVector.deltaZ);
             double t2 = Math.Atan2(rotationVector.deltaY, newX);
-            Matrix3D zRotation = RotateZ(t2, true);
+            Matrix3D zRotation = RotateZ(t2, true, true);
             rotationMatrix = rotationMatrix * zRotation;
 
             // Step 4
-            Matrix3D rotate = RotateX(ConvertToRadians(degrees), false);
+            Matrix3D rotate = RotateX(ConvertToRadians(degrees), false, true);
             rotationMatrix = rotationMatrix * rotate;
 
             // Step 5
-            Matrix3D reverseZRotation = RotateZ(t2, false);
+            Matrix3D reverseZRotation = RotateZ(t2, false, true);
             rotationMatrix = rotationMatrix * reverseZRotation;
 
             // Step 6
-            Matrix3D reverseYRotation = RotateY(t1, false);
+            Matrix3D reverseYRotation = RotateY(t1, false, true);
             rotationMatrix = rotationMatrix * reverseYRotation;
 
             // Step 7
