@@ -1,4 +1,4 @@
-﻿using Petzold.Media2D;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,6 @@ namespace Linal_wk1
 {
     public class Vector
     {
-        private ArrowLine _vector;
         public double xPos { get; set; }
         public double yPos { get; set; }
         public double zPos { get; set; }
@@ -20,7 +19,6 @@ namespace Linal_wk1
         public double deltaZ { get; set; }
         public double deltaW { get; set; }
 
-        public double Length { get; set; }
         private static int blokSize = 50;
 
         public Vector(double x, double y, double z, double deltaX, double deltaY, double deltaZ)
@@ -32,21 +30,13 @@ namespace Linal_wk1
             this.deltaY = deltaY;
             this.deltaZ = deltaZ;
         }
+
         public Vector(double x, double y, double deltaX, double deltaY)
         {            
-            _vector = new ArrowLine();
-            _vector.Stroke = RandomColor.GetRandomBrush();      
-            _vector.StrokeThickness = 5;
-
             xPos = x;
             yPos = y;
             this.deltaX = deltaX;
             this.deltaY = deltaY;
-
-            _vector.X1 = (x * blokSize);
-            _vector.X2 = ((x + deltaX) * blokSize);
-            _vector.Y1 = (y * blokSize);
-            _vector.Y2 = ((y + deltaY) * blokSize);
          }
 
         public Vector(double x, double y, double z)
@@ -55,35 +45,6 @@ namespace Linal_wk1
             this.deltaY = y;
             this.deltaZ = z;
             this.deltaW = 1;
-        }
-
-        public ArrowLine getVector()
-        {
-            return _vector;
-        }
-
-        public void Scale(double factorX, double factorY)
-        {
-            if (factorX < 0)
-            {      
-                deltaX /= (factorX * -1);
-                _vector.X2 = (xPos + deltaX) * blokSize;               
-            }
-            else
-            {
-                deltaX *= factorX;
-                _vector.X2 = (xPos + deltaX) * blokSize;
-            }
-            if(factorY < 0)
-            {           
-                deltaY /= (factorY * -1);
-                _vector.Y2 = (yPos + deltaY) * blokSize;
-            }
-            else
-            {
-                deltaY *= factorY;
-                _vector.Y2 = (yPos + deltaY) * blokSize;
-            }           
         }
 
         public static Vector ADD(Vector vector1, Vector vector2)

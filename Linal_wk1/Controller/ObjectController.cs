@@ -13,18 +13,13 @@ namespace Linal_wk1
 {
     class ObjectController
     {
-        private List<Vector> vectorList;
-        private List<Matrix2D> matrix2DList;
         private List<Kubus> kubusList;
         private MainWindow _main;
         private Timer _timer; 
-        public Matrix2D SelectedMatrix;
 
         public ObjectController(MainWindow _main)
         {
-            this._main = _main;
-            vectorList = new List<Vector>();
-            matrix2DList = new List<Matrix2D>();
+            this._main = _main;           
             kubusList = new List<Kubus>();
             createObjects();
 
@@ -36,58 +31,18 @@ namespace Linal_wk1
         }
 
         private void createObjects()
-        {
-            vectorList.Add(new Vector(0, 0, 1, 1));
-            vectorList.Add(new Vector(3, 3, 2, 2));
-
-            matrix2DList.Add(new Matrix2D(new double[,]
-            {
-                {3,3,2,2},
-                {10,9,9,10},
-                {1,1,1,1}
-            }));
-
-            matrix2DList.Add(new Matrix2D(new double[,]
-            {
-                {1,1,2,2},
-                {2,1,1,2},
-                {1,1,1,1}
-            }));
-            
+        {           
             kubusList.Add(new Kubus());         
         }
 
         private void Animate(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                foreach (var matrix in matrix2DList)
-                {
-                    if(matrix.animate)
-                        RotateSpecificPoint(matrix, matrix.Degrees, matrix.X, matrix.Y);
-                }
-            });
+            //Application.Current.Dispatcher.Invoke(() =>
+            //{
+               
+            //});
         }
-
-        public void ADDVector(Vector v1, Vector v2)
-        {
-            vectorList.Add(Vector.ADD(v1, v2));
-            Draw();
-        }
-
-        public void ScaleVector(double x, double y, Vector v)
-        {
-            v.Scale(x, y);
-            Draw();
-        }
-
-        public void ScaleMatrix(double x, double y, Matrix2D m)
-        {
-            Matrix2D scaleMatrix = Matrix2D.createScaleMatrix(x,y);
-            m.Scale(scaleMatrix);
-            Draw();
-        }
-
+          
         public void TranslateMatrix(double x, double y, Matrix2D m)
         {
             Matrix2D translateMatrix = Matrix2D.createIdentityMatrix(x,y);
@@ -117,15 +72,6 @@ namespace Linal_wk1
         public void Draw()
         {
             _main.Assenstelsel.Children.Clear();
-            foreach (var vector in vectorList)
-            {
-                _main.Assenstelsel.Children.Add(vector.getVector());
-            }
-            //foreach (var matrix in matrix2DList)
-            //{
-            //    matrix.drawMatrix();
-            //    _main.Assenstelsel.Children.Add(matrix.getLine());
-            //}
             foreach (var kubus in kubusList)
             {
                 kubus.Draw();
@@ -141,7 +87,7 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.VectorEye--;
-                kubus.populate();
+                kubus.Draw();
             }
             Draw();
         }
@@ -151,7 +97,7 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.VectorEye++;
-                kubus.populate();
+                kubus.Draw();
             }
             Draw();
         }
@@ -161,7 +107,7 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.LookAtY--;
-                kubus.populate();
+                kubus.Draw();
             }
             Draw();
         }
@@ -171,7 +117,7 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.LookAtY++;
-                kubus.populate();
+                kubus.Draw();
             }
             Draw();
         }
@@ -181,7 +127,7 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.LookAtX++;
-                kubus.populate();
+                kubus.Draw();
             }
             Draw();
         }
@@ -191,7 +137,7 @@ namespace Linal_wk1
             foreach (var kubus in kubusList)
             {
                 kubus.LookAtX--;
-                kubus.populate();
+                kubus.Draw();
             }
             Draw();
         }
@@ -239,21 +185,18 @@ namespace Linal_wk1
             Draw();
         }
 
-        public List<Vector> getVectors()
+        public void translate(double x, double y, double z)
         {
-            return vectorList;
+            foreach (var kubus in kubusList)
+            {
+                kubus.Translate(x,y,z);
+            }
+            Draw();
         }
 
         public Timer getTimer()
         {
             return _timer;
-        }
-
-        public List<Matrix2D> getMatrixes()
-        {
-            return matrix2DList;
-        }
-
-        
+        }      
     }
 }

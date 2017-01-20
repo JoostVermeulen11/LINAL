@@ -14,7 +14,7 @@ namespace Linal_wk1.Model
     class Kubus
     {
         private List<Polygon> shapeList;
-        public Matrix3D matrix;
+        public Matrix3D matrix,weergavenMatrix;
         private Point3D[] points;
         private Matrix3D perspectiveProjectionMatrix;
         private Matrix3D cameraMatrix;
@@ -22,7 +22,6 @@ namespace Linal_wk1.Model
         public double VectorEye { get; set; }
         public double LookAtY { get; set; }
         public double LookAtX { get; set; }
-
 
         public Kubus()
         {
@@ -42,34 +41,7 @@ namespace Linal_wk1.Model
                 {1,1,1,1,1,1,1,1}
             });
 
-            populate();
-        }
-
-        private void newKubus()
-        {
-            //kubus matrix
-            matrix = new Matrix3D(new double[,]
-            {
-                {0,25,0,0,0,25,25,25},
-                {0,0,25,0,25,0,25,25},
-                {0,0,0,25,25,25,0,25},
-                {1,1,1,1,1,1,1,1}
-            });
-        }
-
-        public void populate()
-        {
-            newKubus();
-
-            shapeList.Clear();
-
-            perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
-            cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(LookAtX, LookAtY, 0), new Vector(0, 1, 0));
-
-            weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
-
-            // Naberekening 
-            matrix = weergaveVectorenMatrix.naberekening(700, 700);
+            weergavenMatrix = matrix;        
         }
 
         public void rotate3D(Point3D p1)
@@ -83,7 +55,7 @@ namespace Linal_wk1.Model
         }
 
         public void rotate3D(Point3D p1, Point3D p2)
-        {
+       {
             Vector v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
             // Initialize empty point.
             Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
@@ -95,28 +67,46 @@ namespace Linal_wk1.Model
 
             matrix = rotation * matrix;
         }
+
         public void RotateX()
         {
             Matrix3D temp = Matrix3D.RotateX(1, false, false);
             matrix = temp * matrix;
         }
+
         public void RotateY()
         {
             Matrix3D temp = Matrix3D.RotateY(1, false, false);
             matrix = temp * matrix;
         }
+
         public void RotateZ()
         {
             Matrix3D temp = Matrix3D.RotateZ(1, false, false);
             matrix = temp * matrix;
         }
 
+        public void Translate(double x, double y, double z)
+        {
+            Matrix3D translationMatrix = Matrix3D.createTranslationMatrix(x, y, z);
+            matrix = translationMatrix * matrix;
+        }
+
         public void Draw()
         {
             shapeList.Clear();
-            for (int i = 0; i < matrix.width; i++)
+
+            perspectiveProjectionMatrix = Matrix3D.PerspectiveProjectionMatrix(10, 400, 90);
+            cameraMatrix = Matrix3D.CameraMatrix(new Vector(VectorEye, VectorEye, VectorEye), new Vector(LookAtX, LookAtY, 0), new Vector(0, 1, 0));
+
+            weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
+
+            // Naberekening 
+            weergavenMatrix = weergaveVectorenMatrix.naberekening(850);
+            
+            for (int i = 0; i < weergavenMatrix.width; i++)
             {
-                points[i] = new Point3D() { X = matrix.matrix[0, i], Y = matrix.matrix[1, i], Z = matrix.matrix[2, i] };
+                points[i] = new Point3D() { X = weergavenMatrix.matrix[0, i], Y = weergavenMatrix.matrix[1, i], Z = weergavenMatrix.matrix[2, i] };
             }
 
             //shape 1: bottom

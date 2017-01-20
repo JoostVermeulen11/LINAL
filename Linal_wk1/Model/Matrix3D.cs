@@ -65,14 +65,14 @@ namespace Linal_wk1.Model
             return new Matrix3D(result);
         }    
         
-        public Matrix3D naberekening(double screenWidth, double screenHeight)
+        public Matrix3D naberekening(double screenSize)
         {
             // first width, then height of canvas: both 700
 
             for (int i = 0; i < width; i++)
             {
-                matrix[0, i] = (screenWidth / 2) + ((matrix[0, i] + 1) / matrix[3, i]) * screenHeight * 0.5;
-                matrix[1, i] = (screenWidth / 2) + ((matrix[1, i] + 1) / matrix[3, i]) * screenHeight * 0.5; 
+                matrix[0, i] = (screenSize / 2) + ((matrix[0, i] + 1) / matrix[3, i]) * screenSize * 0.5;
+                matrix[1, i] = (screenSize / 2) + ((matrix[1, i] + 1) / matrix[3, i]) * screenSize * 0.5; 
                 matrix[2, i] = matrix[2,i] * -1; 
             }
 
@@ -222,13 +222,12 @@ namespace Linal_wk1.Model
             {
                 Matrix3D translation = createTranslationMatrix(translateOver.X, translateOver.Y, translateOver.Z);
                 rotationMatrix = rotationMatrix * translation;
-            }
-            
+            }           
 
             // I sincerely hope we're done now.
             return rotationMatrix;
         }
-
+               
         public static Matrix3D createIdentityMatrix()
         {
             return new Matrix3D(new double[,] {
