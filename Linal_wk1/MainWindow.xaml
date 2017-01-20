@@ -6,29 +6,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Linal_wk1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="960" Width="1200" KeyDown="Window_KeyDown">
-    <Grid Margin="0,0,-129,-51">
-        <Canvas  Name="Assenstelsel"
-          Width="850" Height="850" Margin="54,42,567,238">
-            <Canvas.LayoutTransform>
-                <ScaleTransform ScaleY="-1" />
-            </Canvas.LayoutTransform>
-            <Canvas.Background>
-                <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" ViewportUnits="Absolute">
-                    <DrawingBrush.Drawing>
-                        <GeometryDrawing>
-                            <GeometryDrawing.Geometry>
-                                <RectangleGeometry Rect="0,0,50,50"/>
-                            </GeometryDrawing.Geometry>
-                            <GeometryDrawing.Pen>
-                                <Pen Brush="Gray" Thickness="1"/>
-                            </GeometryDrawing.Pen>
-                        </GeometryDrawing>
-                    </DrawingBrush.Drawing>
-                </DrawingBrush>
-            </Canvas.Background>
-        </Canvas>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="850" Margin="921,42,0,0" VerticalAlignment="Top" Width="250"/>
-        <Label x:Name="label" Content="Kubus" HorizontalAlignment="Left" Margin="921,11,0,0" VerticalAlignment="Top"/>
-    </Grid>
+        Title="Le Superbe Magnifique Canvasue de Baguette, oui, oui!" Height="700" Width="1200" KeyDown="Window_KeyDown" FontFamily="Trebuchet MS">
+    <ScrollViewer>
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <Grid Width="700" Height="700" Margin="25,0,0,0" HorizontalAlignment="Left">
+                    <Canvas Name="Assenstelsel"
+                        Width="700" Height="700">
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleY="-1" />
+                        </Canvas.LayoutTransform>
+                        <Canvas.Background>
+                            <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" ViewportUnits="Absolute">
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Geometry>
+                                            <RectangleGeometry Rect="0,0,50,50"/>
+                                        </GeometryDrawing.Geometry>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="Gray" Thickness="1"/>
+                                        </GeometryDrawing.Pen>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Canvas.Background>
+                    </Canvas>
+                </Grid>
+                <Grid HorizontalAlignment="Right" Margin="35,0,0,0">
+                    <StackPanel Orientation="Vertical">
+                        <Label x:Name="label" FontSize="16" Content="Le Kubus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Border CornerRadius="6" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Height="500" VerticalAlignment="Top" Width="250">
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Rotate Over" FontSize="14"/>
+                                <Label Content="Point 1:" FontSize="12"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="X:" Margin="25,0,0,0"/>
+                                    <TextBox x:Name="point1X" Width="25"></TextBox>
+                                    <Label Content="Y:" Margin="10,0,0,0"/>
+                                    <TextBox x:Name="point1Y" Width="25"></TextBox>
+                                    <Label Content="Z:" Margin="10,0,0,0"/>
+                                    <TextBox x:Name="point1Z" Width="25"></TextBox>
+                                </StackPanel>
+                                
+                                <Label Content="Point 2:" FontSize="12"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="X:" Margin="25,0,0,0"/>
+                                    <TextBox x:Name="point2X" Width="25"></TextBox>
+                                    <Label Content="Y:" Margin="10,0,0,0"/>
+                                    <TextBox x:Name="point2Y" Width="25"></TextBox>
+                                    <Label Content="Z:" Margin="10,0,0,0"/>
+                                    <TextBox x:Name="point2Z" Width="25"></TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
+                                    <Label Content="Degrees:"/>
+                                    <TextBox x:Name="rotateDegrees" Width="25"></TextBox>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

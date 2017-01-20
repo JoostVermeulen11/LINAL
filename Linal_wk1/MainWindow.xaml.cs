@@ -75,7 +75,7 @@ namespace Linal_wk1
             }
             if(e.Key == Key.Up)
             {
-                _controller.translate(1,1,1);                
+                _controller.translate(1,0,0);                
                 //translate up
             }
             if(e.Key == Key.Down)

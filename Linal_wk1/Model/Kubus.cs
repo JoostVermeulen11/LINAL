@@ -102,7 +102,7 @@ namespace Linal_wk1.Model
             weergaveVectorenMatrix = perspectiveProjectionMatrix * cameraMatrix * matrix;
 
             // Naberekening 
-            weergavenMatrix = weergaveVectorenMatrix.naberekening(850);
+            weergavenMatrix = weergaveVectorenMatrix.naberekening(700);
             
             for (int i = 0; i < weergavenMatrix.width; i++)
             {
