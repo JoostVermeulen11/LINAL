@@ -61,8 +61,12 @@
                                     <Label Content="Degrees:"/>
                                     <TextBox x:Name="rotateDegrees" MaxLength="2" MaxLines="1" TextAlignment="Center" VerticalContentAlignment="Center" Width="25" Text="{Binding Path=Degrees, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
-                                
-                                <Label Content="Press S to rotate!" FontSize="22" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
+                                    <Label Content="Translation speed:"/>
+                                    <TextBox x:Name="translationSpeed" MaxLength="2" MaxLines="1" TextAlignment="Center" VerticalContentAlignment="Center" Width="25" Text="{Binding Path=TranslationSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                </StackPanel>
+
+                                <Label Content="Press S to rotate!" FontSize="18" HorizontalAlignment="Center" Margin="0,50,0,0"/>
 
                             </StackPanel>
                         </Border>

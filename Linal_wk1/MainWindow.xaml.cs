@@ -32,7 +32,7 @@ namespace Linal_wk1
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _point1X, _point1Y, _point1Z, _point2X, _point2Y, _point2Z, _degrees;
+        private string _point1X, _point1Y, _point1Z, _point2X, _point2Y, _point2Z, _degrees, _translationSpeed;
 
         public string Point1X
         {
@@ -139,6 +139,21 @@ namespace Linal_wk1
             }
         }
 
+        public string TranslationSpeed
+        {
+            get { return _translationSpeed; }
+            set
+            {
+                if (value != _translationSpeed)
+                {
+                    // Replace dots with commas so the convert method works with decimal numbers written with dots
+                    value = value.Replace('.', ',');
+                    _translationSpeed = value;
+                    OnPropertyChanged("TranslationSpeed");
+                }
+            }
+        }
+
 
         public MainWindow()
         {
@@ -156,6 +171,8 @@ namespace Linal_wk1
             Point2Z = "0";
 
             Degrees = "5";
+
+            TranslationSpeed = "1";
         }
 
         public List<double> convertAll()
@@ -172,6 +189,7 @@ namespace Linal_wk1
                 list.Add(!String.IsNullOrWhiteSpace(Point2Z) ? Convert.ToDouble(Point2Z) : 0);
 
                 list.Add(!String.IsNullOrWhiteSpace(Degrees) ? Convert.ToDouble(Degrees) : 5);
+                list.Add(!String.IsNullOrWhiteSpace(TranslationSpeed) ? Convert.ToDouble(TranslationSpeed) : 1);
             }
             catch (Exception fe)
             {
@@ -183,6 +201,7 @@ namespace Linal_wk1
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            var list = convertAll();
             if (e.Key == Key.Subtract)
             {
                 _controller.zoomOut();
@@ -190,14 +209,6 @@ namespace Linal_wk1
             if (e.Key == Key.Add)
             {
                 _controller.zoomIn();
-            }
-            if (e.Key == Key.Up)
-            {
-                _controller.LookatYUp();
-            }
-            if (e.Key == Key.Down)
-            {
-                _controller.LookatYDown();
             }
             if (e.Key == Key.X)
             {
@@ -212,26 +223,38 @@ namespace Linal_wk1
                 _controller.RotateZ();
             }
             if (e.Key == Key.S)
-            {
-                var list = convertAll();
+            {        
                 _controller.rotateOver(new Point3D { X = list[0], Y = list[1], Z = list[2] }, new Point3D { X = list[3], Y = list[4], Z = list[5] }, list[6]);
             }
-            if (e.Key == Key.Up)
+            if (e.Key == Key.NumPad8)
             {
-                _controller.translate(1, 0, 0);
                 //translate up
+                _controller.translate(0, list[7], 0);
             }
-            if (e.Key == Key.Down)
+            if (e.Key == Key.NumPad5)
             {
                 //translate down
+                _controller.translate(0, (list[7] * -1), 0);
             }
-            if (e.Key == Key.Right)
+            if (e.Key == Key.NumPad6)
             {
                 //translate right
+                _controller.translate(list[7], 0, 0);
             }
-            if (e.Key == Key.Left)
+            if (e.Key == Key.NumPad4)
             {
                 //translate left
+                _controller.translate((list[7] * -1), 0, 0);
+            }
+            if(e.Key == Key.V)
+            {
+                //translate front
+                _controller.translate(0, 0, list[7]);
+            }
+            if (e.Key == Key.B)
+            {
+                //translate front
+                _controller.translate(0, 0, (list[7] * -1));
             }
 
         }
