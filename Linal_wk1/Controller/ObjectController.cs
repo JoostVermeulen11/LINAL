@@ -142,20 +142,20 @@ namespace Linal_wk1
             Draw();
         }
 
-        public void rotateOver(Point3D p1)
+        public void rotateOver(Point3D p1, double degrees)
         {
             foreach (var kubus in kubusList)
             {
-                kubus.rotate3D(p1);
+                kubus.rotate3D(p1, degrees);
             }
             Draw();
         }
 
-        public void rotateOver(Point3D p1, Point3D p2)
+        public void rotateOver(Point3D p1, Point3D p2, double degrees)
         {
             foreach (var kubus in kubusList)
             {
-                kubus.rotate3D(p1, p2);
+                kubus.rotate3D(p1, p2, degrees);
             }
             Draw();
         }

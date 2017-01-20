@@ -44,17 +44,17 @@ namespace Linal_wk1.Model
             weergavenMatrix = matrix;        
         }
 
-        public void rotate3D(Point3D p1)
+        public void rotate3D(Point3D p1, double degrees)
         {
             Vector v = new Vector(0, 0, 0, p1.X, p1.Y, p1.Z);
             Point3D over = new Point3D() { X = 0, Y = 0, Z = 0 };
 
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(10, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(degrees, v, over);
 
             matrix = rotation * matrix;
         }
 
-        public void rotate3D(Point3D p1, Point3D p2)
+        public void rotate3D(Point3D p1, Point3D p2, double degrees)
        {
             Vector v = new Vector(p1.X, p1.Y, p1.Z, p2.X - p1.X, p2.Y - p1.Y, p2.Z - p1.Z);
             // Initialize empty point.
@@ -63,7 +63,7 @@ namespace Linal_wk1.Model
             // Yes this is ugly.
             over = p1;
            
-            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(1, v, over);
+            Matrix3D rotation = Matrix3D.Get3DRotationMatrix(degrees, v, over);
 
             matrix = rotation * matrix;
         }

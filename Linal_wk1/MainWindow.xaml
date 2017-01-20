@@ -41,26 +41,28 @@
                                 <Label Content="Point 1:" FontSize="12"/>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="X:" Margin="25,0,0,0"/>
-                                    <TextBox x:Name="point1X" Width="25"></TextBox>
+                                    <TextBox x:Name="txtPnt1X" MaxLength="4" TextAlignment="Center" VerticalContentAlignment="Center" Width="40" Text="{Binding Path=Point1X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                     <Label Content="Y:" Margin="10,0,0,0"/>
-                                    <TextBox x:Name="point1Y" Width="25"></TextBox>
+                                    <TextBox x:Name="txtPnt1Y" MaxLength="4" TextAlignment="Center" VerticalContentAlignment="Center" Width="40" Text="{Binding Path=Point1Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                     <Label Content="Z:" Margin="10,0,0,0"/>
-                                    <TextBox x:Name="point1Z" Width="25"></TextBox>
+                                    <TextBox x:Name="txtPnt1Z" MaxLength="4" TextAlignment="Center" VerticalContentAlignment="Center" Width="40" Text="{Binding Path=Point1Z, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 
                                 <Label Content="Point 2:" FontSize="12"/>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="X:" Margin="25,0,0,0"/>
-                                    <TextBox x:Name="point2X" Width="25"></TextBox>
+                                    <TextBox x:Name="txtPnt2X" MaxLength="4" TextAlignment="Center" VerticalContentAlignment="Center" Width="40" Text="{Binding Path=Point2X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                     <Label Content="Y:" Margin="10,0,0,0"/>
-                                    <TextBox x:Name="point2Y" Width="25"></TextBox>
+                                    <TextBox x:Name="txtPnt2Y" MaxLength="4" TextAlignment="Center" VerticalContentAlignment="Center" Width="40" Text="{Binding Path=Point2Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                     <Label Content="Z:" Margin="10,0,0,0"/>
-                                    <TextBox x:Name="point2Z" Width="25"></TextBox>
+                                    <TextBox x:Name="txtPnt2Z" MaxLength="4" TextAlignment="Center" VerticalContentAlignment="Center" Width="40" Text="{Binding Path=Point2Z, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
                                     <Label Content="Degrees:"/>
-                                    <TextBox x:Name="rotateDegrees" Width="25"></TextBox>
+                                    <TextBox x:Name="rotateDegrees" MaxLength="2" MaxLines="1" TextAlignment="Center" VerticalContentAlignment="Center" Width="25" Text="{Binding Path=Degrees, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
+                                
+                                <Label Content="Press S to rotate!" FontSize="22" HorizontalAlignment="Center" Margin="0,50,0,0"/>
 
                             </StackPanel>
                         </Border>
