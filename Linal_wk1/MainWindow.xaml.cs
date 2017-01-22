@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,7 +33,7 @@ namespace Linal_wk1
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _point1X, _point1Y, _point1Z, _point2X, _point2Y, _point2Z, _degrees;
+        private string _point1X, _point1Y, _point1Z, _point2X, _point2Y, _point2Z, _degrees, _speed;
 
         public string Point1X
         {
@@ -139,6 +140,21 @@ namespace Linal_wk1
             }
         }
 
+        public string Speed
+        {
+            get { return _speed; }
+            set
+            {
+                if (value != _speed)
+                {
+                    // Replace dots with commas so the convert method works with decimal numbers written with dots
+                    value = value.Replace('.', ',');
+                    _speed = value;
+                    OnPropertyChanged("Speed");
+                }
+            }
+        }
+
 
         public MainWindow()
         {
@@ -155,23 +171,25 @@ namespace Linal_wk1
             Point2Y = "0";
             Point2Z = "0";
 
-            Degrees = "5";
+            Degrees = "3";
+            Speed = "1";
         }
 
-        public List<double> convertAll()
+        public List<double> convertRotationParameters()
         {
             List<double> list = new List<double>();
 
             try
             {
-                list.Add(!String.IsNullOrWhiteSpace(Point1X) ? Convert.ToDouble(Point1X) : 0);
-                list.Add(!String.IsNullOrWhiteSpace(Point1Y) ? Convert.ToDouble(Point1Y) : 0);
-                list.Add(!String.IsNullOrWhiteSpace(Point1Z) ? Convert.ToDouble(Point1Z) : 0);
-                list.Add(!String.IsNullOrWhiteSpace(Point2X) ? Convert.ToDouble(Point2X) : 0);
-                list.Add(!String.IsNullOrWhiteSpace(Point2Y) ? Convert.ToDouble(Point2Y) : 0);
-                list.Add(!String.IsNullOrWhiteSpace(Point2Z) ? Convert.ToDouble(Point2Z) : 0);
-
-                list.Add(!String.IsNullOrWhiteSpace(Degrees) ? Convert.ToDouble(Degrees) : 5);
+                // Regex Matches to make sure only numbers are filled in
+                list.Add(!String.IsNullOrWhiteSpace(Point1X) || Regex.IsMatch(Point1X, "\\w+") ? Convert.ToDouble(Point1X) : 0);
+                list.Add(!String.IsNullOrWhiteSpace(Point1Y) || Regex.IsMatch(Point1Y, "\\w+") ? Convert.ToDouble(Point1Y) : 0);
+                list.Add(!String.IsNullOrWhiteSpace(Point1Z) || Regex.IsMatch(Point1Z, "\\w+") ? Convert.ToDouble(Point1Z) : 0);
+                list.Add(!String.IsNullOrWhiteSpace(Point2X) || Regex.IsMatch(Point2X, "\\w+") ? Convert.ToDouble(Point2X) : 0);
+                list.Add(!String.IsNullOrWhiteSpace(Point2Y) || Regex.IsMatch(Point2Y, "\\w+") ? Convert.ToDouble(Point2Y) : 0);
+                list.Add(!String.IsNullOrWhiteSpace(Point2Z) || Regex.IsMatch(Point2Z, "\\w+") ? Convert.ToDouble(Point2Z) : 0);
+                                                              
+                list.Add(!String.IsNullOrWhiteSpace(Degrees) || Regex.IsMatch(Degrees, "\\w+") ? Convert.ToDouble(Degrees) : 3);
             }
             catch (Exception fe)
             {
@@ -187,51 +205,63 @@ namespace Linal_wk1
             {
                 _controller.zoomOut();
             }
-            if (e.Key == Key.Add)
+            else if (e.Key == Key.Add)
             {
                 _controller.zoomIn();
             }
-            if (e.Key == Key.Up)
+            else if (e.Key == Key.Up)
             {
                 _controller.LookatYUp();
             }
-            if (e.Key == Key.Down)
+            else if (e.Key == Key.Down)
             {
                 _controller.LookatYDown();
             }
-            if (e.Key == Key.X)
+            else if (e.Key == Key.X)
             {
                 _controller.RotateX();
             }
-            if (e.Key == Key.Y)
+            else if (e.Key == Key.Y)
             {
                 _controller.RotateY();
             }
-            if (e.Key == Key.Z)
+            else if (e.Key == Key.Z)
             {
                 _controller.RotateZ();
             }
-            if (e.Key == Key.S)
+            else if (e.Key == Key.R)
             {
-                var list = convertAll();
+                // Fetch all the inputs from the rotate over fields
+                var list = convertRotationParameters();
                 _controller.rotateOver(new Point3D { X = list[0], Y = list[1], Z = list[2] }, new Point3D { X = list[3], Y = list[4], Z = list[5] }, list[6]);
             }
-            if (e.Key == Key.Up)
+            else if (e.Key == Key.W)
             {
-                _controller.translate(1, 0, 0);
+                double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
+
                 //translate up
+                _controller.translate(0, speed, 0);
             }
-            if (e.Key == Key.Down)
+            else if (e.Key == Key.S)
             {
+                double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
+
                 //translate down
+                _controller.translate(0, -speed, 0);
             }
-            if (e.Key == Key.Right)
+            else if (e.Key == Key.D)
             {
+                double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
+
                 //translate right
+                _controller.translate(speed, 0, 0);
             }
-            if (e.Key == Key.Left)
+            else if (e.Key == Key.A)
             {
+                double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
+
                 //translate left
+                _controller.translate(-speed, 0, 0);
             }
 
         }
