@@ -229,39 +229,57 @@ namespace Linal_wk1
             {
                 _controller.RotateZ();
             }
+            
             else if (e.Key == Key.R)
             {
                 // Fetch all the inputs from the rotate over fields
                 var list = convertRotationParameters();
-                _controller.rotateOver(new Point3D { X = list[0], Y = list[1], Z = list[2] }, new Point3D { X = list[3], Y = list[4], Z = list[5] }, list[6]);
+                if (list.Count >= 7)
+                {
+                    _controller.rotateOver(new Point3D { X = list[0], Y = list[1], Z = list[2] }, new Point3D { X = list[3], Y = list[4], Z = list[5] }, list[6]);
+                }
             }
             else if (e.Key == Key.W)
             {
                 double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
-
+            
                 //translate up
                 _controller.translate(0, speed, 0);
             }
             else if (e.Key == Key.S)
             {
                 double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
-
-                //translate down
+            
+                //translate down            
                 _controller.translate(0, -speed, 0);
             }
             else if (e.Key == Key.D)
             {
                 double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
-
-                //translate right
+            
+                //translate right            
                 _controller.translate(speed, 0, 0);
             }
             else if (e.Key == Key.A)
             {
                 double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
-
-                //translate left
+            
+                //translate left            
                 _controller.translate(-speed, 0, 0);
+            }
+            else if (e.Key == Key.Q)
+            {
+                double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
+
+                //translate front
+                _controller.translate(0, 0, speed);
+            }
+            else if (e.Key == Key.E)
+            {
+                double speed = !String.IsNullOrWhiteSpace(Speed) || !Regex.IsMatch(Speed, "\\w+") ? Convert.ToDouble(Speed) : 1;
+
+                //translate back
+                _controller.translate(0, 0, -speed);
             }
 
         }
