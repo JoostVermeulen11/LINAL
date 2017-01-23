@@ -15,21 +15,7 @@
                         Width="700" Height="700">
                         <Canvas.LayoutTransform>
                             <ScaleTransform ScaleY="-1" />
-                        </Canvas.LayoutTransform>
-                        <Canvas.Background>
-                            <DrawingBrush TileMode="Tile" Viewport="0,0,50,50" ViewportUnits="Absolute">
-                                <DrawingBrush.Drawing>
-                                    <GeometryDrawing>
-                                        <GeometryDrawing.Geometry>
-                                            <RectangleGeometry Rect="0,0,50,50"/>
-                                        </GeometryDrawing.Geometry>
-                                        <GeometryDrawing.Pen>
-                                            <Pen Brush="Gray" Thickness="1"/>
-                                        </GeometryDrawing.Pen>
-                                    </GeometryDrawing>
-                                </DrawingBrush.Drawing>
-                            </DrawingBrush>
-                        </Canvas.Background>
+                        </Canvas.LayoutTransform>                       
                     </Canvas>
                 </Grid>
                 <Grid HorizontalAlignment="Right" Margin="35,0,0,0">
